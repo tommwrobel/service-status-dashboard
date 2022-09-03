@@ -38,7 +38,8 @@ export const useServiceData = (service: ServiceType) => {
         serviceStatus,
         serviceCommit,
         isError: serviceStatusQuery.isError,
-        isLoading: serviceStatusQuery.isLoading || serviceStatusQuery.isFetching,
+        isLoading: serviceStatusQuery.isLoading,
+        isFetching: serviceStatusQuery.isFetching,
         refreshServiceStatus
     };
 }

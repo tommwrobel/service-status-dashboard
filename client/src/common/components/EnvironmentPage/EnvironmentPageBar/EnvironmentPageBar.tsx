@@ -36,7 +36,7 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange }: EnvironmentPa
                 <div style={{display: "flex", gap: 12, alignItems: "center"}}>
                     <FormLabel>Select environment: </FormLabel>
 
-                    <Select size={"small"} defaultValue={''} onChange={handleEnvironmentChange}>
+                    <Select size={"small"} defaultValue={environments[0].name || ''} onChange={handleEnvironmentChange}>
                         {environments.map(env => (
                             <MenuItem value={env.name}>{env.name}</MenuItem>
                         ))}

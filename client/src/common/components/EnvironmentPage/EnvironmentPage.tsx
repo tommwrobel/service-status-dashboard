@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useConfigData } from "../../hooks/useConfigData/useConfigData";
 import ServicesTable from "../ServicesTable/ServicesTable";
 import { Container } from "@mui/material";
@@ -10,6 +10,12 @@ const EnvironmentPage = () => {
     const [environment, setEnvironment] = useState('');
 
     const {config, isError, isLoading} = useConfigData();
+
+    useEffect(() => {
+        if (config?.envs) {
+            setEnvironment(environment => config.envs[0].name)
+        }
+    }, [config])
 
     const findServices = (environmentName: string): ServiceType[] => {
         return config?.envs?.find(env => env.name === environmentName)?.services || [] as ServiceType[];

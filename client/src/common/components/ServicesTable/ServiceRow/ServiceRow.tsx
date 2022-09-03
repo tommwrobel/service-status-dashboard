@@ -31,15 +31,15 @@ const ServiceRow = ({ service }: ServiceRowProps) => {
             </TableCell>
             <TableCell>{service.branch} / {serviceCommit}</TableCell>
             <TableCell>
-                <Link href={service.repositoryUrl}>{service.repositoryUrl.substring(8, 28)}</Link>
+                <Link href={service.repositoryUrl}>{service.repositoryUrl.substring(0, 28)}...</Link>
                 <CopyContentButton content={service.repositoryUrl} />
             </TableCell>
             <TableCell>
-                <Link href={service.repositoryUrl}>{service.swaggerUrl.substring(8, 28)}</Link>
+                <Link href={service.repositoryUrl}>{service.swaggerUrl.substring(0, 28)}...</Link>
                 <CopyContentButton content={service.swaggerUrl} />
             </TableCell>
             <TableCell>
-                <Link href={service.repositoryUrl}>{service.jenkinsUrl.substring(8, 28)}</Link>
+                <Link href={service.repositoryUrl}>{service.jenkinsUrl.substring(0, 28)}...</Link>
                 <CopyContentButton content={service.jenkinsUrl} />
             </TableCell>
             <TableCell>

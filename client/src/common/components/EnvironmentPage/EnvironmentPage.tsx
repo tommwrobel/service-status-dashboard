@@ -22,9 +22,13 @@ const EnvironmentPage = () => {
     }, [config]);
 
     useEffect(() => {
-        queryClient.defaultQueryOptions({
-            refetchInterval: (automaticRefresh ? 3000 : false),
+        console.log("zmiana! na", automaticRefresh)
+        queryClient.setDefaultOptions({
+            queries: {
+                refetchInterval: automaticRefresh ? 10000 : false
+            },
         })
+        queryClient.refetchQueries();
     }, [automaticRefresh])
 
     const findServices = (environmentName: string): ServiceType[] => {

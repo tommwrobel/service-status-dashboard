@@ -9,8 +9,19 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import ApplicationBar from "./common/components/ApplicationBar/ApplicationBar";
 import CssBaseline from '@mui/material/CssBaseline';
 import EnvironmentPage from "./common/components/EnvironmentPage/EnvironmentPage";
+import { ReactQueryDevtools } from "react-query/devtools";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: 2,
+            refetchOnWindowFocus: false,
+            suspense: false,
+            staleTime: 1000 * 60 * 10,
+            refetchInterval: false,
+        },
+    },
+});
 
 const darkTheme = createTheme({
     palette: {
@@ -39,6 +50,7 @@ function App() {
                     <QueryClientProvider client={queryClient}>
                         <ApplicationBar onChangeTheme={handleChangeTheme}/>
                         <EnvironmentPage />
+                        <ReactQueryDevtools initialIsOpen={false} />
                     </QueryClientProvider>
                 </CssBaseline>
             </ThemeProvider>

@@ -25,7 +25,7 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
     const queryClient = useQueryClient();
 
     const handleRefreshData = (): void => {
-        queryClient.invalidateQueries();
+        queryClient.refetchQueries();
     }
 
     const handleEnvironmentChange = (event: SelectChangeEvent<string>): void => {
@@ -36,10 +36,11 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
         onAutomaticallyRefreshChange(event.target.checked)
     }
 
+    console.log(queryClient.isFetching())
     return (
             <Toolbar style={{ justifyContent: "space-between", gap: "1rem"}}>
                 <div style={{display: "flex", gap: 12, alignItems: "center"}}>
-                    <FormLabel>Select environment: </FormLabel>
+                    <FormLabel>Environment: </FormLabel>
 
                     <Select size={"small"} defaultValue={environments[0].name || ''} onChange={handleEnvironmentChange}>
                         {environments.map(env => (
@@ -47,15 +48,14 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
                         ))}
                     </Select>
                 </div>
-
                 <div style={{display: "flex", gap: 12, alignItems: "center"}}>
                     <FormControlLabel
                         control={<Checkbox onChange={handleAutomaticallyRefreshChange}/>}
-                        label="Refresh data automatically"
+                        label="Refresh data every 10s"
                         labelPlacement="start"
                     />
                     <LoadingButton
-                        loading={queryClient.isFetching() > 0}
+                        loading={Boolean(queryClient.isFetching())}
                         variant="outlined"
                         startIcon={<RefreshRounded />}
                         onClick={handleRefreshData}

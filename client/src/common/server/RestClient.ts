@@ -2,19 +2,19 @@ import { ConfigType, ErrorHealthCheck, SuccessHealthCheck } from "../../react-ap
 
 export const getEnvironmentsConfig = (): Promise<any> => {
     return new Promise((resolve) => {
-        setTimeout(() => resolve(getConfig()), 500)
+        setTimeout(() => resolve(getConfig()), Math.random() * 2000)
     })
 }
 
 export const getServiceHealthStatus = (appHealthUrl: string): Promise<any> => {
     return new Promise<any>((resolve) => {
-        setTimeout(() => resolve(getHealth()), 500)
+        setTimeout(() => resolve(getHealth()), Math.random() * 1000)
     })
 }
 
 export const getServiceInfo = (appInfoUrl: string): Promise<any> => {
     return new Promise((resolve) => {
-            setTimeout(() => resolve(getInfo()), 500)
+            setTimeout(() => resolve(getInfo()), Math.random() * 1000)
     })
 }
 

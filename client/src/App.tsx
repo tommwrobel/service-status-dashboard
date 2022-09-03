@@ -1,25 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { QueryClient, QueryClientProvider } from "react-query";
-import EnvironmentTab from "./common/components/EnvironmentTab/EnvironmentTab";
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { AppBar, Box, Button, ButtonBase, Toolbar, Typography } from "@mui/material";
-import { Refresh } from "@mui/icons-material";
+import { createTheme, ThemeProvider } from "@mui/material";
 import ApplicationBar from "./common/components/ApplicationBar/ApplicationBar";
+import CssBaseline from '@mui/material/CssBaseline';
+import EnvironmentPage from "./common/components/EnvironmentPage/EnvironmentPage";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
+
+const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+    },
+});
+
+const lightTheme = createTheme({
+    palette: {
+        mode: 'light',
+    },
+});
 
 function App() {
+    const [theme, setTheme] = useState(darkTheme);
+
+    const handleChangeTheme = (): void => {
+        if (theme === lightTheme) setTheme(theme => darkTheme);
+        else setTheme(theme => lightTheme);
+    }
 
     return (
         <div className="App">
-            <QueryClientProvider client={queryClient}>
-                <ApplicationBar />
-                <EnvironmentTab />
-            </QueryClientProvider>
+            <ThemeProvider theme={theme}>
+                <CssBaseline>
+                    <QueryClientProvider client={queryClient}>
+                        <ApplicationBar onChangeTheme={handleChangeTheme}/>
+                        <EnvironmentPage />
+                    </QueryClientProvider>
+                </CssBaseline>
+            </ThemeProvider>
         </div>
     );
 }

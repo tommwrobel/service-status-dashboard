@@ -1,29 +1,23 @@
-import { useQueryClient } from "react-query";
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
-import { RefreshRounded } from "@mui/icons-material";
+import { AppBar, Button, Checkbox, FormControlLabel, Switch, Toolbar, Typography } from "@mui/material";
 
-const ApplicationBar = () => {
+type ApplicationBarProps = {
+    onChangeTheme: () => void
+}
 
-    const queryClient = useQueryClient();
-
-    const handleRefreshData = (): void => {
-        queryClient.invalidateQueries();
-    }
+const ApplicationBar = ({ onChangeTheme }: ApplicationBarProps) => {
 
     return (
         <AppBar position="relative">
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Service Status Dashboard
+                    Services Status Dashboard
                 </Typography>
-                <Button
-                    variant="outlined"
-                    startIcon={<RefreshRounded />}
-                    color="inherit"
-                    onClick={handleRefreshData}
-                >
-                    Refresh Data
-                </Button>
+
+                <FormControlLabel
+                    control={<Switch defaultChecked onChange={onChangeTheme}/>}
+                    label="Use dark mode"
+                    labelPlacement="start"
+                />
             </Toolbar>
         </AppBar>
     );

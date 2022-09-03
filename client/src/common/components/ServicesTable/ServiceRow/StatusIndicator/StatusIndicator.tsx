@@ -7,10 +7,9 @@ type ServiceStatusIndicatorProps = {
 }
 
 const StatusIndicator = ({ isLoading, serviceStatus }: ServiceStatusIndicatorProps) => {
-    if(isLoading) return <Circle color="disabled"/>;
+    if(isLoading) return <ChangeCircle color="disabled"/>;
     if(serviceStatus === ServiceStatus.Success) return <Circle color="success"/>;
     if(serviceStatus === ServiceStatus.Failed) return <Circle color="error"/>;
-    if(serviceStatus === ServiceStatus.Unknow) return <Circle color="disabled"/>;
     return <Circle color="disabled"/>;
 };
 

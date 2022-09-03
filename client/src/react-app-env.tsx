@@ -25,17 +25,9 @@ export type ConfigType = {
     envs: EnvType[]
 }
 
-export type SuccessHealthCheck = {
+export type HealthCheck = {
     success: boolean,
-    body: {
-        status: string,
-        groups: string[],
-    },
+    body?: Object,
+    error?: Object
 }
 
-export type ErrorHealthCheck = {
-    success: boolean,
-    error: {
-        message: string,
-    },
-}

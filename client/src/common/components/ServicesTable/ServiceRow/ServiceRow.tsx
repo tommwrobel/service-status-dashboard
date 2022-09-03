@@ -16,6 +16,7 @@ const ServiceRow = ({ service }: ServiceRowProps) => {
     const {
         serviceStatus,
         serviceCommit,
+        serviceBranch,
         isError,
         isLoading,
         isFetching,
@@ -29,7 +30,7 @@ const ServiceRow = ({ service }: ServiceRowProps) => {
                 <StatusIndicator isLoading={isLoading || isFetching} serviceStatus={serviceStatus} />
                 {isError && ("Error loading status.")}
             </TableCell>
-            <TableCell>{service.branch} / {serviceCommit}</TableCell>
+            <TableCell>{(serviceBranch && serviceCommit) ? `${serviceBranch} / ${serviceCommit}` : "No repository info"}</TableCell>
             <TableCell>
                 <Link href={service.repositoryUrl}>{service.repositoryUrl.substring(0, 28)}...</Link>
                 <CopyContentButton content={service.repositoryUrl} />

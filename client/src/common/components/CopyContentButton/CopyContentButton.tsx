@@ -1,4 +1,4 @@
-import { IconButton, Toolbar, Typography } from "@mui/material";
+import { IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
 import { ContentCopyRounded, RefreshRounded } from "@mui/icons-material";
 
 type CopyContentButtonProps = {
@@ -15,9 +15,11 @@ const CopyContentButton = ({ content }: CopyContentButtonProps) => {
     };
 
     return (
-        <IconButton onClick={() => handleCopyToClipboard(content)} size="small">
-            <ContentCopyRounded fontSize="inherit" />
-        </IconButton>
+        <Tooltip title="Copy link address">
+            <IconButton onClick={() => handleCopyToClipboard(content)} size="small">
+                <ContentCopyRounded fontSize="inherit" />
+            </IconButton>
+        </Tooltip>
     );
 }
 

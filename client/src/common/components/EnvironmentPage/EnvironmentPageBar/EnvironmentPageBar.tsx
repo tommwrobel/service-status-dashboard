@@ -11,15 +11,16 @@ import {
 } from "@mui/material";
 import { RefreshRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import { useState } from "react";
+import { ChangeEvent } from "react";
 import { EnvType } from "../../../../react-app-env";
 
 type EnvironmentPageBarProps = {
     environments: EnvType[];
     onEnvironmentChange: (value: string) => void;
+    onAutomaticallyRefreshChange: (value: boolean) => void;
 }
 
-const EnvironmentPageBar = ({ environments, onEnvironmentChange }: EnvironmentPageBarProps) => {
+const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomaticallyRefreshChange }: EnvironmentPageBarProps) => {
 
     const queryClient = useQueryClient();
 
@@ -31,6 +32,10 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange }: EnvironmentPa
         onEnvironmentChange(event.target.value);
     }
 
+    const handleAutomaticallyRefreshChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        onAutomaticallyRefreshChange(event.target.checked)
+    }
+
     return (
             <Toolbar style={{ justifyContent: "space-between", gap: "1rem"}}>
                 <div style={{display: "flex", gap: 12, alignItems: "center"}}>
@@ -38,14 +43,14 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange }: EnvironmentPa
 
                     <Select size={"small"} defaultValue={environments[0].name || ''} onChange={handleEnvironmentChange}>
                         {environments.map(env => (
-                            <MenuItem value={env.name}>{env.name}</MenuItem>
+                            <MenuItem key={env.name} value={env.name}>{env.name}</MenuItem>
                         ))}
                     </Select>
                 </div>
 
                 <div style={{display: "flex", gap: 12, alignItems: "center"}}>
                     <FormControlLabel
-                        control={<Checkbox />}
+                        control={<Checkbox onChange={handleAutomaticallyRefreshChange}/>}
                         label="Refresh data automatically"
                         labelPlacement="start"
                     />

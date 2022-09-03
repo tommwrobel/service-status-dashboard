@@ -6,7 +6,8 @@ import { ServiceStatus, ServiceType } from "../../../react-app-env";
 export const useServiceData = (service: ServiceType) => {
 
     const [serviceStatus, setServiceStatus] = useState(ServiceStatus.Unknow);
-    const [serviceCommit, setServiceCommit] = useState('');
+    const [serviceCommit, setServiceCommit] = useState<string | null>(null);
+    const [serviceBranch, setServiceBranch] = useState<string | null>(null);
 
     const serviceStatusQuery = useQuery(
         ['serviceStatusQuery', service.appUrl],
@@ -20,12 +21,12 @@ export const useServiceData = (service: ServiceType) => {
     );
     const serviceRepoQuery = useQuery(
         ['serviceRepoQuery', service.appUrl],
-        () => getServiceInfo(service.appUrl),
+        () => getServiceInfo(service.appInfohUrl),
         {
             onSuccess: (data) => {
                 setServiceCommit(data.body?.git?.commit.id);
-            },
-            onError: () => setServiceCommit(''),
+                setServiceBranch(data.body?.git?.branch);
+            }
         }
     );
 
@@ -37,6 +38,7 @@ export const useServiceData = (service: ServiceType) => {
     return {
         serviceStatus,
         serviceCommit,
+        serviceBranch,
         isError: serviceStatusQuery.isError,
         isLoading: serviceStatusQuery.isLoading,
         isFetching: serviceStatusQuery.isFetching,

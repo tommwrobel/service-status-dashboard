@@ -4,10 +4,14 @@ import ServicesTable from "../ServicesTable/ServicesTable";
 import { Container } from "@mui/material";
 import EnvironmentPageBar from "./EnvironmentPageBar/EnvironmentPageBar";
 import { ServiceType } from "../../../react-app-env";
+import { useQueryClient } from "react-query";
 
 const EnvironmentPage = () => {
 
+    const queryClient = useQueryClient();
+
     const [environment, setEnvironment] = useState('');
+    const [automaticRefresh, setAutomaticRefresh] = useState(false);
 
     const {config, isError, isLoading} = useConfigData();
 
@@ -15,7 +19,13 @@ const EnvironmentPage = () => {
         if (config?.envs) {
             setEnvironment(environment => config.envs[0].name)
         }
-    }, [config])
+    }, [config]);
+
+    useEffect(() => {
+        queryClient.defaultQueryOptions({
+            refetchInterval: (automaticRefresh ? 3000 : false),
+        })
+    }, [automaticRefresh])
 
     const findServices = (environmentName: string): ServiceType[] => {
         return config?.envs?.find(env => env.name === environmentName)?.services || [] as ServiceType[];
@@ -26,7 +36,11 @@ const EnvironmentPage = () => {
     if (config)
         return (
             <>
-                <EnvironmentPageBar onEnvironmentChange={setEnvironment} environments={config?.envs} />
+                <EnvironmentPageBar
+                    environments={config?.envs}
+                    onEnvironmentChange={setEnvironment}
+                    onAutomaticallyRefreshChange={setAutomaticRefresh}
+                />
                 <Container maxWidth={false} sx={{ m: "2rem auto" }}>
                     {environment && <ServicesTable services={findServices(environment)} />}
                 </Container>

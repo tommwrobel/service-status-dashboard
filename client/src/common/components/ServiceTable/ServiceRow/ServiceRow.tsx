@@ -1,9 +1,10 @@
 import { ServiceType } from "../../../../react-app-env";
 import { useServiceData } from "../../../hooks/useServiceData/useServiceData";
-import StatusIndicator from "./ServiceStatusIndicator/StatusIndicator";
+import StatusIndicator from "./StatusIndicator/StatusIndicator";
 import { Button, IconButton, TableCell, TableRow } from "@mui/material";
 import { ContentCopyRounded, RefreshRounded } from "@mui/icons-material";
 import CopyContentButton from "../../CopyContentButton/CopyContentButton";
+import { LoadingButton } from "@mui/lab";
 
 type ServiceRowProps = {
     service: ServiceType,
@@ -38,9 +39,15 @@ const ServiceRow = ({ service }: ServiceRowProps) => {
                 <CopyContentButton content={service.jenkinsUrl} />
             </TableCell>
             <TableCell>
-                <Button variant="outlined" startIcon={<RefreshRounded />} onClick={refreshServiceStatus}>
+                <LoadingButton
+                    loading={isLoading}
+                    variant="outlined"
+                    startIcon={<RefreshRounded />}
+                    onClick={refreshServiceStatus}
+                    loadingPosition="start"
+                >
                     Refresh
-                </Button>
+                </LoadingButton>
             </TableCell>
         </TableRow>
     );

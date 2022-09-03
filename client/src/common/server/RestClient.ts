@@ -1,4 +1,4 @@
-import { ConfigType, ErrorHealthCheck, SuccessHealthCheck } from "../../react-app-env";
+import {ConfigType, HealthCheck} from "../../react-app-env";
 
 export const getEnvironmentsConfig = (): Promise<any> => {
     return new Promise((resolve) => {
@@ -6,15 +6,15 @@ export const getEnvironmentsConfig = (): Promise<any> => {
     })
 }
 
-export const getServiceHealthStatus = (appHealthUrl: string): Promise<any> => {
-    return new Promise<any>((resolve) => {
+export const getServiceHealthStatus = (appHealthUrl: string): Promise<HealthCheck> => {
+    return new Promise<HealthCheck>((resolve) => {
         setTimeout(() => resolve(getHealth()), Math.random() * 1000)
     })
 }
 
 export const getServiceInfo = (appInfoUrl: string): Promise<any> => {
     return new Promise((resolve) => {
-            setTimeout(() => resolve(getInfo()), Math.random() * 1000)
+        setTimeout(() => resolve(getInfo()), Math.random() * 1000)
     })
 }
 
@@ -134,7 +134,7 @@ function getConfig(): ConfigType {
     }
 }
 
-function getHealth(): SuccessHealthCheck | ErrorHealthCheck {
+function getHealth(): HealthCheck {
     const ok = {
         success: true, body: {
             "status": "UP",

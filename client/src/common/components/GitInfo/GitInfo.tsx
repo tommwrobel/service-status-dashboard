@@ -1,5 +1,4 @@
 import { Link, Typography } from "@mui/material";
-import CopyContentButton from "../CopyContentButton/CopyContentButton";
 
 type GitInfoProps = {
     branch?: string | null;

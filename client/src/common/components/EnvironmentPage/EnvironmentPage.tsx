@@ -24,9 +24,10 @@ const EnvironmentPage = () => {
     useEffect(() => {
         queryClient.setDefaultOptions({
             queries: {
+                ...queryClient.getDefaultOptions().queries,
                 refetchInterval: automaticRefresh ? 10000 : false
             },
-        })
+        });
         queryClient.refetchQueries();
     }, [automaticRefresh])
 
@@ -35,7 +36,6 @@ const EnvironmentPage = () => {
     }
 
     if (isLoading) return <CircularProgress size={60} style={{display: "block", margin: "5rem auto"}}/>;
-    if (isError) return  <span>Error while loading configuration!</span>;
     if (config)
         return (
             <>
@@ -49,7 +49,7 @@ const EnvironmentPage = () => {
                 </Container>
             </>
         );
-    return <h3>Error loading settings</h3>
+    return <span>Error while loading configuration!</span>;
 }
 
 export default EnvironmentPage;

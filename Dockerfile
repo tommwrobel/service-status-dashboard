@@ -3,7 +3,7 @@ WORKDIR /build
 COPY ./ ./
 WORKDIR /build/client
 RUN npm install && npm run build
-RUN cp -R /build/client/build/ /build/server/dist/
+RUN cp -R /build/client/build/* /build/server/dist
 
 WORKDIR /build/server
 RUN npm install

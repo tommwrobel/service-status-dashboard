@@ -29,26 +29,14 @@ const darkTheme = createTheme({
     },
 });
 
-const lightTheme = createTheme({
-    palette: {
-        mode: 'light',
-    },
-});
-
 function App() {
-    const [theme, setTheme] = useState(darkTheme);
-
-    const handleChangeTheme = (): void => {
-        if (theme === lightTheme) setTheme(theme => darkTheme);
-        else setTheme(theme => lightTheme);
-    }
 
     return (
         <div className="App">
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={darkTheme}>
                 <CssBaseline>
                     <QueryClientProvider client={queryClient}>
-                        <ApplicationBar onChangeTheme={handleChangeTheme}/>
+                        <ApplicationBar />
                         <EnvironmentPage />
                         <ReactQueryDevtools initialIsOpen={false} />
                     </QueryClientProvider>

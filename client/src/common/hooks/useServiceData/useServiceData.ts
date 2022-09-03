@@ -10,7 +10,7 @@ export const useServiceData = (service: ServiceType) => {
     const [serviceBranch, setServiceBranch] = useState<string | null>(null);
 
     const serviceStatusQuery = useQuery(
-        ['serviceStatusQuery', service.appUrl],
+        ['service', 'serviceStatusQuery', service.appUrl],
         () => getServiceHealthStatus(service.appHealthUrl),
         {
             onSuccess: (data) => {
@@ -20,7 +20,7 @@ export const useServiceData = (service: ServiceType) => {
         }
     );
     const serviceRepoQuery = useQuery(
-        ['serviceRepoQuery', service.appUrl],
+        ['service', 'serviceRepoQuery', service.appUrl],
         () => getServiceInfo(service.appInfohUrl),
         {
             onSuccess: (data) => {

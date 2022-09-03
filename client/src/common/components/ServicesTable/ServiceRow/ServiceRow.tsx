@@ -6,6 +6,8 @@ import { Divider, IconButton, Link, Menu, MenuItem, TableCell, TableRow } from "
 import { ContentCopyRounded, MoreHoriz, Refresh, RefreshRounded } from "@mui/icons-material";
 import CopyContentButton from "../../CopyContentButton/CopyContentButton";
 import { LoadingButton } from "@mui/lab";
+import CopyableLink from "../../CopyableLink/CopyableLink";
+import GitInfo from "../../GitInfo/GitInfo";
 
 type ServiceRowProps = {
     service: ServiceType,
@@ -28,20 +30,23 @@ const ServiceRow = ({ service }: ServiceRowProps) => {
             <TableCell>{service.name}</TableCell>
             <TableCell>
                 <StatusIndicator isLoading={isLoading || isFetching} serviceStatus={serviceStatus} />
-                {isError && ("Error loading status.")}
-            </TableCell>
-            <TableCell>{(serviceBranch && serviceCommit) ? `${serviceBranch} / ${serviceCommit}` : "No repository info"}</TableCell>
-            <TableCell>
-                <Link href={service.repositoryUrl}>{service.repositoryUrl.substring(0, 28)}...</Link>
-                <CopyContentButton content={service.repositoryUrl} />
+                {isError && ("(Error)")}
             </TableCell>
             <TableCell>
-                <Link href={service.repositoryUrl}>{service.swaggerUrl.substring(0, 28)}...</Link>
-                <CopyContentButton content={service.swaggerUrl} />
+                <GitInfo
+                    branch={serviceBranch}
+                    commit={serviceCommit}
+                    isLoading={isLoading || isFetching}
+                />
             </TableCell>
             <TableCell>
-                <Link href={service.repositoryUrl}>{service.jenkinsUrl.substring(0, 28)}...</Link>
-                <CopyContentButton content={service.jenkinsUrl} />
+                <CopyableLink href={service.repositoryUrl} />
+            </TableCell>
+            <TableCell>
+                <CopyableLink href={service.swaggerUrl} />
+            </TableCell>
+            <TableCell>
+                <CopyableLink href={service.jenkinsUrl} />
             </TableCell>
             <TableCell>
                 <LoadingButton

@@ -1,10 +1,6 @@
-import { AppBar, Button, Checkbox, FormControlLabel, Switch, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 
-type ApplicationBarProps = {
-    onChangeTheme: () => void
-}
-
-const ApplicationBar = ({ onChangeTheme }: ApplicationBarProps) => {
+const ApplicationBar = () => {
 
     return (
         <AppBar position="relative">
@@ -12,12 +8,6 @@ const ApplicationBar = ({ onChangeTheme }: ApplicationBarProps) => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Services Status Dashboard
                 </Typography>
-
-                <FormControlLabel
-                    control={<Switch defaultChecked onChange={onChangeTheme}/>}
-                    label="Use dark mode"
-                    labelPlacement="start"
-                />
             </Toolbar>
         </AppBar>
     );

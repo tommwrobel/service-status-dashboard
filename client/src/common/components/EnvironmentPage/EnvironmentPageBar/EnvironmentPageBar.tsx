@@ -25,7 +25,7 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
     const queryClient = useQueryClient();
 
     const handleRefreshData = (): void => {
-        queryClient.refetchQueries();
+        queryClient.refetchQueries(['service']);
     }
 
     const handleEnvironmentChange = (event: SelectChangeEvent<string>): void => {
@@ -36,7 +36,6 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
         onAutomaticallyRefreshChange(event.target.checked)
     }
 
-    console.log(queryClient.isFetching())
     return (
             <Toolbar style={{ justifyContent: "space-between", gap: "1rem"}}>
                 <div style={{display: "flex", gap: 12, alignItems: "center"}}>
@@ -55,7 +54,7 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
                         labelPlacement="start"
                     />
                     <LoadingButton
-                        loading={Boolean(queryClient.isFetching())}
+                        loading={Boolean(queryClient.isMutating())}
                         variant="outlined"
                         startIcon={<RefreshRounded />}
                         onClick={handleRefreshData}

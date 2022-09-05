@@ -4,7 +4,7 @@ import ServicesTable from "../ServicesTable/ServicesTable";
 import { CircularProgress, Container } from "@mui/material";
 import EnvironmentPageBar from "./EnvironmentPageBar/EnvironmentPageBar";
 import { useQueryClient } from "react-query";
-import { Environment, Service } from "../../types/types";
+import { Environment } from "../../types/types";
 import "./EnvironmentPage.css";
 
 const EnvironmentPage = (): JSX.Element => {

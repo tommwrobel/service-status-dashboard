@@ -4,14 +4,14 @@ import ServicesTable from "../ServicesTable/ServicesTable";
 import { CircularProgress, Container } from "@mui/material";
 import EnvironmentPageBar from "./EnvironmentPageBar/EnvironmentPageBar";
 import { useQueryClient } from "react-query";
-import { Environment } from "../../types/types";
+import { Environment, Maybe } from "../../types/types";
 import "./EnvironmentPage.css";
 
 const EnvironmentPage = (): JSX.Element => {
 
     const queryClient = useQueryClient();
 
-    const [environment, setEnvironment] = useState<Environment | undefined>();
+    const [environment, setEnvironment] = useState<Maybe<Environment>>();
 
     const {config, isLoading} = useConfigData();
 

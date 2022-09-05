@@ -12,17 +12,17 @@ import {
 import { OpenInNew, RefreshRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import { ChangeEvent, useEffect, useState } from "react";
-import { Environment } from "../../../types/types";
+import { Environment, Maybe } from "../../../types/types";
 import "./EnvironmentPageBar.css";
 
 type EnvironmentPageBarProps = {
     environments: Environment[];
-    onEnvironmentChange: (value: Environment | undefined) => void;
+    onEnvironmentChange: (value: Maybe<Environment>) => void;
 }
 
 const EnvironmentPageBar = ({ environments, onEnvironmentChange }: EnvironmentPageBarProps): JSX.Element => {
 
-    const [currentEnvironment, setCurrentEnvironment] = useState<Environment | undefined>();
+    const [currentEnvironment, setCurrentEnvironment] = useState<Maybe<Environment>>();
 
     const queryClient = useQueryClient();
 

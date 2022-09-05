@@ -1,0 +1,15 @@
+.InfoBoxWrapper {
+    list-style-type: none;
+    padding: 0;
+}
+
+.infoKey {
+    font-weight: bold;
+    font-size: 0.875rem;
+    color: #c9c9c9;
+}
+
+.infoValue {
+    font-size: 0.875rem;
+    color: #989898;
+}

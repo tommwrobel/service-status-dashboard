@@ -23,8 +23,19 @@ export type Config = {
 
 export type HealthCheck = {
     success: boolean,
-    body?: object,
-    error?: object
+    body?: Object,
+    error?: Object
+}
+
+export type ServiceInfoResponse = {
+    success: boolean,
+    body?: ServiceInfo,
+    error?: Object
+}
+
+export type ServiceInfo = {
+    git: GitInfo,
+    build: BuildInfo,
 }
 
 export type GitInfo = {
@@ -44,3 +55,6 @@ export type BuildInfo = {
     version: string,
     group: string,
 }
+
+export type Nullable<T> = null | T;
+export type Maybe<T> = T | undefined;

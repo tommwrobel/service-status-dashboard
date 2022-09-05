@@ -1,19 +1,19 @@
 import { IconButton, Typography } from "@mui/material";
 import { InfoOutlined } from "@mui/icons-material";
 import { useState, MouseEvent } from "react";
-import BuildInfoPopover from "./BuildInfoPopover/BuildInfoPopover";
-import { BuildInfo, GitInfo } from "../../types/types";
+import ServiceInfoPopover from "./ServiceInfoPopover/ServiceInfoPopover";
+import { BuildInfo, GitInfo, Nullable } from "../../types/types";
 
 type ServiceInfoProps = {
-    gitInfo: GitInfo | null;
-    buildInfo: BuildInfo | null;
+    gitInfo: Nullable<GitInfo>;
+    buildInfo: Nullable<BuildInfo>;
     isLoading: boolean;
 }
 
 // TODO: refactor this component
 const ServiceInfo = ({ gitInfo, buildInfo, isLoading }: ServiceInfoProps): JSX.Element => {
 
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const [anchorEl, setAnchorEl] = useState<Nullable<HTMLElement>>(null);
 
     const handlePopoverOpen = (event: MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -30,8 +30,9 @@ const ServiceInfo = ({ gitInfo, buildInfo, isLoading }: ServiceInfoProps): JSX.E
         <>
             {buildInfo &&
                 <>
-                    <BuildInfoPopover
+                    <ServiceInfoPopover
                         anchorEl={anchorEl}
+                        gitInfo={gitInfo}
                         buildInfo={buildInfo}
                         onClose={handlePopoverClose}
                     />

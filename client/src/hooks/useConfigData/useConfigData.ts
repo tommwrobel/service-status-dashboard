@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useState } from "react";
 import { getEnvironmentsConfig } from "../../server/RestClient";
 import { Config } from "../../types/types";
@@ -10,7 +10,7 @@ export const useConfigData = () => {
     const configQuery = useQuery(
         ['configQuery'],
         () => getEnvironmentsConfig(),
-        { onSuccess: (data) => setConfig(data) }
+        { onSuccess: (data) => setConfig(config => data) }
     );
 
     return {

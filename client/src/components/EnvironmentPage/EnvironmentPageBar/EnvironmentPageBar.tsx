@@ -1,5 +1,6 @@
 import { useQueryClient } from "react-query";
 import {
+    Button,
     Checkbox,
     FormControlLabel,
     FormLabel,
@@ -8,32 +9,45 @@ import {
     SelectChangeEvent,
     Toolbar
 } from "@mui/material";
-import { RefreshRounded } from "@mui/icons-material";
+import { OpenInNew, RefreshRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Environment } from "../../../types/types";
 import "./EnvironmentPageBar.css";
 
 type EnvironmentPageBarProps = {
     environments: Environment[];
-    onEnvironmentChange: (value: string) => void;
-    onAutomaticallyRefreshChange: (value: boolean) => void;
+    onEnvironmentChange: (value: Environment | undefined) => void;
 }
 
-const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomaticallyRefreshChange }: EnvironmentPageBarProps): JSX.Element => {
+const EnvironmentPageBar = ({ environments, onEnvironmentChange }: EnvironmentPageBarProps): JSX.Element => {
+
+    const [currentEnvironment, setCurrentEnvironment] = useState<Environment | undefined>();
 
     const queryClient = useQueryClient();
+
+    useEffect(() => {
+        setCurrentEnvironment(environments[0])
+    }, [environments]);
 
     const handleRefreshData = (): void => {
         queryClient.refetchQueries(['service']);
     }
 
-    const handleEnvironmentChange = (event: SelectChangeEvent<string>): void => {
-        onEnvironmentChange(event.target.value);
+    const handleEnvironmentChange = (event: SelectChangeEvent): void => {
+        let selectedEnvironment = environments.find(env => env.name === event.target.value);
+        setCurrentEnvironment(selectedEnvironment)
+        onEnvironmentChange(selectedEnvironment);
     }
 
     const handleAutomaticallyRefreshChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        onAutomaticallyRefreshChange(event.target.checked)
+        queryClient.setDefaultOptions({
+            queries: {
+                ...queryClient.getDefaultOptions().queries,
+                refetchInterval: event.target.checked ? 30000 : false
+            },
+        });
+        queryClient.refetchQueries();
     }
 
     return (
@@ -41,12 +55,22 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
                 <div className="ToolbarItemsGroup">
                     <FormLabel>Environment: </FormLabel>
 
-                    <Select size={"small"} defaultValue={environments[0].name || ''} onChange={handleEnvironmentChange}>
+                    <Select size={"small"} defaultValue={environments[0].name} onChange={handleEnvironmentChange}>
                         {environments.map(env => (
                             <MenuItem key={env.name} value={env.name}>{env.name}</MenuItem>
                         ))}
                     </Select>
-                    {/*// TODO: add link to config envs.configUrl*/}
+
+                    {currentEnvironment &&
+                        <Button
+                            variant="text"
+                            endIcon={<OpenInNew />}
+                            href={currentEnvironment.configUrl}
+                            target="_blank"
+                        >
+                            Open configuration
+                        </Button>
+                    }
                 </div>
                 <div className="ToolbarItemsGroup">
                     <FormControlLabel

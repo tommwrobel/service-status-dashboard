@@ -4,37 +4,22 @@ import ServicesTable from "../ServicesTable/ServicesTable";
 import { CircularProgress, Container } from "@mui/material";
 import EnvironmentPageBar from "./EnvironmentPageBar/EnvironmentPageBar";
 import { useQueryClient } from "react-query";
-import { Service } from "../../types/types";
+import { Environment, Service } from "../../types/types";
 import "./EnvironmentPage.css";
 
 const EnvironmentPage = (): JSX.Element => {
 
     const queryClient = useQueryClient();
 
-    const [environment, setEnvironment] = useState('');
-    const [automaticRefresh, setAutomaticRefresh] = useState(false);
+    const [environment, setEnvironment] = useState<Environment | undefined>();
 
     const {config, isLoading} = useConfigData();
 
     useEffect(() => {
         if (config?.envs) {
-            setEnvironment(config.envs[0].name)
+            setEnvironment(config.envs[0])
         }
     }, [config, queryClient]);
-
-    useEffect(() => {
-        queryClient.setDefaultOptions({
-            queries: {
-                ...queryClient.getDefaultOptions().queries,
-                refetchInterval: automaticRefresh ? 30000 : false
-            },
-        });
-        queryClient.refetchQueries();
-    }, [automaticRefresh, queryClient])
-
-    const findServices = (environmentName: string): Service[] => {
-        return config?.envs?.find(env => env.name === environmentName)?.services || [] as Service[];
-    }
 
     if (isLoading) return <CircularProgress size={60} style={{display: "block", margin: "5rem auto"}}/>;
     if (config)
@@ -44,9 +29,8 @@ const EnvironmentPage = (): JSX.Element => {
                     <EnvironmentPageBar
                         environments={config?.envs}
                         onEnvironmentChange={setEnvironment}
-                        onAutomaticallyRefreshChange={setAutomaticRefresh}
                     />
-                    {environment && <ServicesTable services={findServices(environment)} />}
+                    {environment && <ServicesTable services={environment.services} />}
                 </Container>
             </>
         );

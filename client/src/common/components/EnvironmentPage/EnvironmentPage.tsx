@@ -17,7 +17,7 @@ const EnvironmentPage = (): JSX.Element => {
 
     useEffect(() => {
         if (config?.envs) {
-            setEnvironment(environment => config.envs[0].name)
+            setEnvironment(config.envs[0].name)
         }
     }, [config]);
 

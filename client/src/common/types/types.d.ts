@@ -14,11 +14,11 @@ export type Service = {
 export type Environment = {
     name: string,
     configUrl: string,
-    services: ServiceType[]
+    services: Service[]
 }
 
 export type Config = {
-    envs: EnvType[]
+    envs: Environment[]
 }
 
 export type HealthCheck = {

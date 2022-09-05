@@ -1,5 +1,6 @@
-import { IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
-import { ContentCopyRounded, RefreshRounded } from "@mui/icons-material";
+import { IconButton, Snackbar, Tooltip } from "@mui/material";
+import { ContentCopyRounded } from "@mui/icons-material";
+import { FC, useState } from "react";
 
 type CopyContentButtonProps = {
     content: any;
@@ -7,19 +8,35 @@ type CopyContentButtonProps = {
 
 const CopyContentButton = ({ content }: CopyContentButtonProps) => {
 
+    const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+
     const handleCopyToClipboard = (value: string): void => {
         navigator
             .clipboard
             .writeText(value)
-            .then(() => console.log("Link copied!"));
+            .then(() => setIsSnackbarOpen(true));
     };
 
+    const handleOnSnackbarClose = (): void => {
+        setIsSnackbarOpen(false);
+    }
+
     return (
-        <Tooltip title="Copy link address">
-            <IconButton onClick={() => handleCopyToClipboard(content)} size="small">
-                <ContentCopyRounded fontSize="inherit" />
-            </IconButton>
-        </Tooltip>
+        <>
+            <Tooltip title="Copy link">
+                <IconButton onClick={() => handleCopyToClipboard(content)} size="small">
+                    <ContentCopyRounded fontSize="inherit" />
+                </IconButton>
+            </Tooltip>
+
+            <Snackbar
+                open={isSnackbarOpen}
+                autoHideDuration={3000}
+                anchorOrigin={{vertical: "bottom", horizontal: "center"}}
+                onClose={handleOnSnackbarClose}
+                message="The link has been copied to the clipboard!"
+            />
+        </>
     );
 }
 

@@ -19,7 +19,7 @@ const EnvironmentPage = (): JSX.Element => {
         if (config?.envs) {
             setEnvironment(config.envs[0].name)
         }
-    }, [config]);
+    }, [config, queryClient]);
 
     useEffect(() => {
         queryClient.setDefaultOptions({
@@ -29,7 +29,7 @@ const EnvironmentPage = (): JSX.Element => {
             },
         });
         queryClient.refetchQueries();
-    }, [automaticRefresh])
+    }, [automaticRefresh, queryClient])
 
     const findServices = (environmentName: string): Service[] => {
         return config?.envs?.find(env => env.name === environmentName)?.services || [] as Service[];

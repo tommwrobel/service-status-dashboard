@@ -1,6 +1,6 @@
 import { IconButton, Snackbar, Tooltip } from "@mui/material";
 import { ContentCopyRounded } from "@mui/icons-material";
-import { FC, useState } from "react";
+import { useState } from "react";
 
 type CopyContentButtonProps = {
     content: any;

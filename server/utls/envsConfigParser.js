@@ -14,7 +14,7 @@ module.exports.parseEnvsConfig = function (config) {
                 branch: config.services[serviceName]?.branch,
                 appUrl: config.envs[env][serviceName],
                 appHealthUrl: config.envs[env][serviceName] + config.servicePaths.health,
-                appInfohUrl: config.envs[env][serviceName] + config.servicePaths.info,
+                appInfoUrl: config.envs[env][serviceName] + config.servicePaths.info,
                 repositoryUrl: config.services[serviceName].repository + '/commits/branch/' + config.services[serviceName]?.branch,
                 jenkinsUrl: config.jenkinsUrl + serviceName,
                 swaggerUrl: config.envs[env][serviceName] + config.servicePaths.swagger

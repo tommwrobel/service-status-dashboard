@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
 
-const ApplicationBar = () => {
+const ApplicationBar = (): JSX.Element => {
 
     return (
         <AppBar position="relative">

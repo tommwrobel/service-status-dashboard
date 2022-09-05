@@ -6,7 +6,7 @@ import EnvironmentPageBar from "./EnvironmentPageBar/EnvironmentPageBar";
 import { useQueryClient } from "react-query";
 import { Service } from "../../types/types";
 
-const EnvironmentPage = () => {
+const EnvironmentPage = (): JSX.Element => {
 
     const queryClient = useQueryClient();
 

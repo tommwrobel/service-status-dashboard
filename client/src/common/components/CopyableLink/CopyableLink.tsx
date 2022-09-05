@@ -5,7 +5,7 @@ type CopyableLinkProps = {
     href: string;
 }
 
-const CopyableLink = ({ href }: CopyableLinkProps) => {
+const CopyableLink = ({ href }: CopyableLinkProps): JSX.Element => {
 
     return (
         <>

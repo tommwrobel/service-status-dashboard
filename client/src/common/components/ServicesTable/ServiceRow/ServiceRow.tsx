@@ -11,7 +11,7 @@ type ServiceRowProps = {
     service: Service,
 }
 
-const ServiceRow = ({ service }: ServiceRowProps) => {
+const ServiceRow = ({ service }: ServiceRowProps): JSX.Element => {
 
     const {
         serviceStatus,

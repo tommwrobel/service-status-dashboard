@@ -6,7 +6,7 @@ type GitInfoProps = {
     isLoading: boolean;
 }
 
-const GitInfo = ({ branch, commit, isLoading }: GitInfoProps) => {
+const GitInfo = ({ branch, commit, isLoading }: GitInfoProps): JSX.Element => {
 
     if (isLoading) return <Typography style={{fontSize: '0.875rem',fontStyle: "italic", color: "#bdbdbd"}}>Pending info...</Typography>
     if (!branch || !commit) return <Typography style={{fontSize: '0.875rem', fontStyle: "italic", color: "#bdbdbd"}}>(No data)</Typography>

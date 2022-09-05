@@ -6,7 +6,7 @@ type CopyContentButtonProps = {
     content: any;
 }
 
-const CopyContentButton = ({ content }: CopyContentButtonProps) => {
+const CopyContentButton = ({ content }: CopyContentButtonProps): JSX.Element => {
 
     const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 

@@ -19,7 +19,7 @@ type EnvironmentPageBarProps = {
     onAutomaticallyRefreshChange: (value: boolean) => void;
 }
 
-const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomaticallyRefreshChange }: EnvironmentPageBarProps) => {
+const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomaticallyRefreshChange }: EnvironmentPageBarProps): JSX.Element => {
 
     const queryClient = useQueryClient();
 

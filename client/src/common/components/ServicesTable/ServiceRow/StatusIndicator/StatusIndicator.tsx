@@ -6,7 +6,7 @@ type ServiceStatusIndicatorProps = {
     serviceStatus?: ServiceStatus
 }
 
-const StatusIndicator = ({ isLoading, serviceStatus }: ServiceStatusIndicatorProps) => {
+const StatusIndicator = ({ isLoading, serviceStatus }: ServiceStatusIndicatorProps): JSX.Element => {
     if(isLoading) return <ChangeCircle color="disabled"/>;
     if(serviceStatus === ServiceStatus.Success) return <Circle color="success"/>;
     if(serviceStatus === ServiceStatus.Failed) return <Circle color="error"/>;

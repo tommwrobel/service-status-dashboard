@@ -6,7 +6,7 @@ type StatusTableProps = {
     services: Service[]
 }
 
-const ServicesTable = ({ services }: StatusTableProps) => {
+const ServicesTable = ({ services }: StatusTableProps): JSX.Element => {
 
     return(
         <>

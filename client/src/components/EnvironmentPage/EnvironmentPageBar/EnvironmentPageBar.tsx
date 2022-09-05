@@ -53,7 +53,7 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange }: EnvironmentPa
     return (
             <Toolbar className="Toolbar">
                 <div className="ToolbarItemsGroup">
-                    <FormLabel>Environment: </FormLabel>
+                    <FormLabel>Environment:</FormLabel>
 
                     <Select size={"small"} defaultValue={environments[0].name} onChange={handleEnvironmentChange}>
                         {environments.map(env => (
@@ -78,6 +78,7 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange }: EnvironmentPa
                         label="Auto refresh every 30s"
                         labelPlacement="start"
                     />
+
                     <LoadingButton
                         loading={Boolean(queryClient.isMutating())}
                         variant="outlined"

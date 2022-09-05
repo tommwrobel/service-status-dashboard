@@ -1,12 +1,11 @@
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { getServiceHealthStatus, getServiceInfo } from "../../server/RestClient";
-import { Service } from "../../types/types";
-import { ServiceStatus } from "../../enums/enums";
+import { Service, ServiceStatus } from "../../types/types";
 
 export const useServiceData = (service: Service) => {
 
-    const [serviceStatus, setServiceStatus] = useState(ServiceStatus.Unknown);
+    const [serviceStatus, setServiceStatus] = useState<ServiceStatus>("Unknown");
     const [serviceCommit, setServiceCommit] = useState<string | null>(null);
     const [serviceBranch, setServiceBranch] = useState<string | null>(null);
 
@@ -15,9 +14,9 @@ export const useServiceData = (service: Service) => {
         () => getServiceHealthStatus(service.appHealthUrl),
         {
             onSuccess: (data) => {
-                setServiceStatus(data.success ? ServiceStatus.Success : ServiceStatus.Failed);
+                setServiceStatus(data.success ? "Success" : "Failed");
             },
-            onError: () => setServiceStatus(ServiceStatus.Unknown),
+            onError: () => setServiceStatus("Unknown"),
         }
     );
     const serviceRepoQuery = useQuery(

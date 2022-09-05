@@ -1,3 +1,5 @@
+export declare type ServiceStatus = "Unknown" | "Success" | "Failed";
+
 export type Service = {
     name: string,
     branch: string,

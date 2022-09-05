@@ -1,5 +1,5 @@
 import { ChangeCircle, Circle } from "@mui/icons-material";
-import { ServiceStatus } from "../../../../enums/enums";
+import { ServiceStatus } from "../../../../types/types";
 
 type ServiceStatusIndicatorProps = {
     isLoading: boolean,
@@ -8,8 +8,8 @@ type ServiceStatusIndicatorProps = {
 
 const StatusIndicator = ({ isLoading, serviceStatus }: ServiceStatusIndicatorProps): JSX.Element => {
     if(isLoading) return <ChangeCircle color="disabled"/>;
-    if(serviceStatus === ServiceStatus.Success) return <Circle color="success"/>;
-    if(serviceStatus === ServiceStatus.Failed) return <Circle color="error"/>;
+    if(serviceStatus === "Success") return <Circle color="success"/>;
+    if(serviceStatus === "Failed") return <Circle color="error"/>;
     return <Circle color="disabled"/>;
 };
 

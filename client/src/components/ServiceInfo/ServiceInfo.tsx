@@ -43,7 +43,7 @@ const ServiceInfo = ({ gitInfo, buildInfo, isLoading }: ServiceInfoProps): JSX.E
                     </IconButton>
                 </>
             }
-            {`${gitInfo.branch} / ${gitInfo.commit}`}
+            {`${gitInfo.branch} / ${gitInfo.commit.id}`}
         </>
     );
 }

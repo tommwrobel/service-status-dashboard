@@ -1,9 +1,5 @@
 import React from 'react';
-import { QueryClient, QueryClientProvider } from "react-query";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import { QueryClientProvider } from "react-query";
 import { ThemeProvider } from "@mui/material";
 import ApplicationBar from "./components/ApplicationBar/ApplicationBar";
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,6 +7,7 @@ import EnvironmentPage from "./components/EnvironmentPage/EnvironmentPage";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { darkTheme } from "./config/ThemeConfig";
 import { queryClient } from "./config/ReactQueryConfig";
+import "./App.css";
 
 function App() {
 

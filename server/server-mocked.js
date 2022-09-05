@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(cors());
+app.use(function(req,res,next){setTimeout(next, getRandomInt(1200))});
 
 app.get('/api/envs-config', (req, res) => {
   res.json(getConfig())
@@ -174,6 +175,10 @@ function getInfo() {
 
 function getRandomItem(items) {
   return items[Math.floor(Math.random() * items.length)];
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
 
 

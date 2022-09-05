@@ -1,14 +1,21 @@
 import ServiceRow from "./ServiceRow/ServiceRow";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import {
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+} from "@mui/material";
 import { Service } from "../../types/types";
 
 type StatusTableProps = {
-    services: Service[]
-}
+    services: Service[];
+};
 
 const ServicesTable = ({ services }: StatusTableProps): JSX.Element => {
-
-    return(
+    return (
         <>
             <TableContainer component={Paper}>
                 <Table>
@@ -24,13 +31,14 @@ const ServicesTable = ({ services }: StatusTableProps): JSX.Element => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {services.map(service => <ServiceRow key={service.name} service={service} />)}
+                        {services.map((service) => (
+                            <ServiceRow key={service.name} service={service} />
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>
         </>
     );
-
 };
 
 export default ServicesTable;

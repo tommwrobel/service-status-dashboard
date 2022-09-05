@@ -1,16 +1,17 @@
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { useState } from "react";
 import { getEnvironmentsConfig } from "../../server/RestClient";
 import { Config } from "../../types/types";
 
 export const useConfigData = () => {
-
     const [config, setConfig] = useState<Config>();
 
     const configQuery = useQuery(
-        ['configQuery'],
+        ["configQuery"],
         () => getEnvironmentsConfig(),
-        { onSuccess: (data) => setConfig(config => data) }
+        {
+            onSuccess: (data) => setConfig((config) => data),
+        }
     );
 
     return {
@@ -18,4 +19,4 @@ export const useConfigData = () => {
         isError: configQuery.isError,
         isLoading: configQuery.isLoading,
     };
-}
+};

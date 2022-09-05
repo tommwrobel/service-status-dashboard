@@ -8,11 +8,10 @@ import { Service } from "../../../types/types";
 import ServiceInfo from "../../ServiceInfo/ServiceInfo";
 
 type ServiceRowProps = {
-    service: Service,
-}
+    service: Service;
+};
 
 const ServiceRow = ({ service }: ServiceRowProps): JSX.Element => {
-
     const {
         serviceStatus,
         gitInfo,
@@ -20,15 +19,18 @@ const ServiceRow = ({ service }: ServiceRowProps): JSX.Element => {
         isError,
         isLoading,
         isFetching,
-        refreshServiceStatus
+        refreshServiceStatus,
     } = useServiceData(service);
 
-    return(
+    return (
         <TableRow>
             <TableCell>{service.name}</TableCell>
             <TableCell>
-                <StatusIndicator isLoading={isLoading || isFetching} serviceStatus={serviceStatus} />
-                {isError && ("(Error)")}
+                <StatusIndicator
+                    isLoading={isLoading || isFetching}
+                    serviceStatus={serviceStatus}
+                />
+                {isError && "(Error)"}
             </TableCell>
             <TableCell>
                 <ServiceInfo
@@ -60,7 +62,6 @@ const ServiceRow = ({ service }: ServiceRowProps): JSX.Element => {
             </TableCell>
         </TableRow>
     );
-
 };
 
 export default ServiceRow;

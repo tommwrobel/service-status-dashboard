@@ -3,22 +3,17 @@ import CopyContentButton from "../CopyContentButton/CopyContentButton";
 
 type CopyableLinkProps = {
     href: string;
-}
+};
 
 const CopyableLink = ({ href }: CopyableLinkProps): JSX.Element => {
-
     return (
         <>
             <CopyContentButton content={href} />
-            <Link
-                href={href}
-                target="_blank"
-                rel="noopener"
-            >
+            <Link href={href} target="_blank" rel="noopener">
                 {href.substring(0, 28)}...
             </Link>
         </>
     );
-}
+};
 
 export default CopyableLink;

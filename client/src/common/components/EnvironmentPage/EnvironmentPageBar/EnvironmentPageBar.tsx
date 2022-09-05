@@ -45,6 +45,7 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
                             <MenuItem key={env.name} value={env.name}>{env.name}</MenuItem>
                         ))}
                     </Select>
+                    {/*// TODO: add link to config envs.configUrl*/}
                 </div>
                 <div style={{display: "flex", gap: 12, alignItems: "center"}}>
                     <FormControlLabel

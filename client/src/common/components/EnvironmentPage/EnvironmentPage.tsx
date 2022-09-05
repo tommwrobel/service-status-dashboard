@@ -13,7 +13,7 @@ const EnvironmentPage = () => {
     const [environment, setEnvironment] = useState('');
     const [automaticRefresh, setAutomaticRefresh] = useState(false);
 
-    const {config, isError, isLoading} = useConfigData();
+    const {config, isLoading} = useConfigData();
 
     useEffect(() => {
         if (config?.envs) {

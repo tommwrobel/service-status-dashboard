@@ -12,6 +12,7 @@ import { RefreshRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import { ChangeEvent } from "react";
 import { Environment } from "../../../types/types";
+import "./EnvironmentPageBar.css";
 
 type EnvironmentPageBarProps = {
     environments: Environment[];
@@ -36,8 +37,8 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
     }
 
     return (
-            <Toolbar style={{ justifyContent: "space-between", gap: "1rem"}}>
-                <div style={{display: "flex", gap: 12, alignItems: "center"}}>
+            <Toolbar className="Toolbar">
+                <div className="ToolbarItemsGroup">
                     <FormLabel>Environment: </FormLabel>
 
                     <Select size={"small"} defaultValue={environments[0].name || ''} onChange={handleEnvironmentChange}>
@@ -47,7 +48,7 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
                     </Select>
                     {/*// TODO: add link to config envs.configUrl*/}
                 </div>
-                <div style={{display: "flex", gap: 12, alignItems: "center"}}>
+                <div className="ToolbarItemsGroup">
                     <FormControlLabel
                         control={<Checkbox onChange={handleAutomaticallyRefreshChange}/>}
                         label="Auto refresh every 30s"

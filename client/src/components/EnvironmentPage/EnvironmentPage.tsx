@@ -5,6 +5,7 @@ import { CircularProgress, Container } from "@mui/material";
 import EnvironmentPageBar from "./EnvironmentPageBar/EnvironmentPageBar";
 import { useQueryClient } from "react-query";
 import { Service } from "../../types/types";
+import "./EnvironmentPage.css";
 
 const EnvironmentPage = (): JSX.Element => {
 
@@ -39,7 +40,7 @@ const EnvironmentPage = (): JSX.Element => {
     if (config)
         return (
             <>
-                <Container maxWidth={false} sx={{ m: "1rem auto" }}>
+                <Container className="EnvironmentPageContainer">
                     <EnvironmentPageBar
                         environments={config?.envs}
                         onEnvironmentChange={setEnvironment}

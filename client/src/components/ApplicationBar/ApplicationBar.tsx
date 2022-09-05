@@ -5,7 +5,7 @@ const ApplicationBar = (): JSX.Element => {
     return (
         <AppBar position="relative">
             <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6">
                     Services Status Dashboard
                 </Typography>
             </Toolbar>

@@ -1,27 +1,21 @@
-export enum ServiceStatus {
-    Unknow = 'Unknow',
-    Success = 'Success',
-    Failed = 'Failed',
-}
-
-export type ServiceType = {
+export type Service = {
     name: string,
     branch: string,
     appUrl: string,
     appHealthUrl: string,
-    appInfohUrl: string,
+    appInfoUrl: string,
     repositoryUrl: string,
     swaggerUrl: string,
     jenkinsUrl: string
 }
 
-export type EnvType = {
+export type Environment = {
     name: string,
     configUrl: string,
     services: ServiceType[]
 }
 
-export type ConfigType = {
+export type Config = {
     envs: EnvType[]
 }
 
@@ -30,4 +24,3 @@ export type HealthCheck = {
     body?: Object,
     error?: Object
 }
-

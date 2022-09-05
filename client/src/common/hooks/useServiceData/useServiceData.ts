@@ -1,11 +1,12 @@
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { getServiceHealthStatus, getServiceInfo } from "../../server/RestClient";
-import { ServiceStatus, ServiceType } from "../../../react-app-env";
+import { Service } from "../../types/types";
+import { ServiceStatus } from "../../enums/enums";
 
-export const useServiceData = (service: ServiceType) => {
+export const useServiceData = (service: Service) => {
 
-    const [serviceStatus, setServiceStatus] = useState(ServiceStatus.Unknow);
+    const [serviceStatus, setServiceStatus] = useState(ServiceStatus.Unknown);
     const [serviceCommit, setServiceCommit] = useState<string | null>(null);
     const [serviceBranch, setServiceBranch] = useState<string | null>(null);
 
@@ -16,12 +17,12 @@ export const useServiceData = (service: ServiceType) => {
             onSuccess: (data) => {
                 setServiceStatus(data.success ? ServiceStatus.Success : ServiceStatus.Failed);
             },
-            onError: () => setServiceStatus(ServiceStatus.Unknow),
+            onError: () => setServiceStatus(ServiceStatus.Unknown),
         }
     );
     const serviceRepoQuery = useQuery(
         ['service', 'serviceRepoQuery', service.appUrl],
-        () => getServiceInfo(service.appInfohUrl),
+        () => getServiceInfo(service.appInfoUrl),
         {
             onSuccess: (data) => {
                 setServiceCommit(data.body?.git?.commit.id);
@@ -39,9 +40,9 @@ export const useServiceData = (service: ServiceType) => {
         serviceStatus,
         serviceCommit,
         serviceBranch,
-        isError: serviceStatusQuery.isError,
-        isLoading: serviceStatusQuery.isLoading,
-        isFetching: serviceStatusQuery.isFetching,
+        isError: serviceStatusQuery.isError || serviceRepoQuery.isError,
+        isLoading: serviceStatusQuery.isLoading || serviceRepoQuery.isLoading,
+        isFetching: serviceStatusQuery.isFetching || serviceRepoQuery.isFetching,
         refreshServiceStatus
     };
 }

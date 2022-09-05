@@ -1,6 +1,5 @@
 import { useQueryClient } from "react-query";
 import {
-    Button,
     Checkbox,
     FormControlLabel,
     FormLabel,
@@ -12,10 +11,10 @@ import {
 import { RefreshRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import { ChangeEvent } from "react";
-import { EnvType } from "../../../../react-app-env";
+import { Environment } from "../../../types/types";
 
 type EnvironmentPageBarProps = {
-    environments: EnvType[];
+    environments: Environment[];
     onEnvironmentChange: (value: string) => void;
     onAutomaticallyRefreshChange: (value: boolean) => void;
 }
@@ -50,7 +49,7 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
                 <div style={{display: "flex", gap: 12, alignItems: "center"}}>
                     <FormControlLabel
                         control={<Checkbox onChange={handleAutomaticallyRefreshChange}/>}
-                        label="Refresh data every 10s"
+                        label="Auto refresh every 30s"
                         labelPlacement="start"
                     />
                     <LoadingButton
@@ -60,7 +59,7 @@ const EnvironmentPageBar = ({ environments, onEnvironmentChange, onAutomatically
                         onClick={handleRefreshData}
                         loadingPosition="start"
                     >
-                        Refresh Environment
+                        Refresh All
                     </LoadingButton>
                 </div>
             </Toolbar>

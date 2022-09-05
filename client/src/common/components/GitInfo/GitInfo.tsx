@@ -1,4 +1,4 @@
-import { Link, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 type GitInfoProps = {
     branch?: string | null;

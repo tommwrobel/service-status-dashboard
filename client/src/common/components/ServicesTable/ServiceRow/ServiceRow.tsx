@@ -1,5 +1,3 @@
-import { MouseEvent } from "react";
-import { ServiceType } from "../../../../react-app-env";
 import { useServiceData } from "../../../hooks/useServiceData/useServiceData";
 import StatusIndicator from "./StatusIndicator/StatusIndicator";
 import { TableCell, TableRow } from "@mui/material";
@@ -7,9 +5,10 @@ import { RefreshRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import CopyableLink from "../../CopyableLink/CopyableLink";
 import GitInfo from "../../GitInfo/GitInfo";
+import { Service } from "../../../types/types";
 
 type ServiceRowProps = {
-    service: ServiceType,
+    service: Service,
 }
 
 const ServiceRow = ({ service }: ServiceRowProps) => {

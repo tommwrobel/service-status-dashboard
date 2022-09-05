@@ -3,8 +3,8 @@ import { useConfigData } from "../../hooks/useConfigData/useConfigData";
 import ServicesTable from "../ServicesTable/ServicesTable";
 import { CircularProgress, Container } from "@mui/material";
 import EnvironmentPageBar from "./EnvironmentPageBar/EnvironmentPageBar";
-import { ServiceType } from "../../../react-app-env";
 import { useQueryClient } from "react-query";
+import { Service } from "../../types/types";
 
 const EnvironmentPage = () => {
 
@@ -25,14 +25,14 @@ const EnvironmentPage = () => {
         queryClient.setDefaultOptions({
             queries: {
                 ...queryClient.getDefaultOptions().queries,
-                refetchInterval: automaticRefresh ? 10000 : false
+                refetchInterval: automaticRefresh ? 30000 : false
             },
         });
         queryClient.refetchQueries();
     }, [automaticRefresh])
 
-    const findServices = (environmentName: string): ServiceType[] => {
-        return config?.envs?.find(env => env.name === environmentName)?.services || [] as ServiceType[];
+    const findServices = (environmentName: string): Service[] => {
+        return config?.envs?.find(env => env.name === environmentName)?.services || [] as Service[];
     }
 
     if (isLoading) return <CircularProgress size={60} style={{display: "block", margin: "5rem auto"}}/>;

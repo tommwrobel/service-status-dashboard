@@ -1,4 +1,4 @@
-import {ConfigType, HealthCheck} from "../../react-app-env";
+import { Config, HealthCheck } from "../types/types";
 
 export const getEnvironmentsConfig = (): Promise<any> => {
     return new Promise((resolve) => {
@@ -19,7 +19,7 @@ export const getServiceInfo = (appInfoUrl: string): Promise<any> => {
 }
 
 
-function getConfig(): ConfigType {
+function getConfig(): Config {
     return {
         "envs": [
             {
@@ -31,7 +31,7 @@ function getConfig(): ConfigType {
                         "branch": "develop",
                         "appUrl": "https://file-manager.qa-environment1example.com",
                         "appHealthUrl": "https://file-manager.qa-environment1example.com/meta/health",
-                        "appInfohUrl": "https://file-manager.qa-environment1example.com/meta/info",
+                        "appInfoUrl": "https://file-manager.qa-environment1example.com/meta/info",
                         "repositoryUrl": "https://bitbucket.org/exampleai/file-manager/commits/branch/develop",
                         "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/file-manager",
                         "swaggerUrl": "https://file-manager.qa-environment1example.com/swagger-ui/index.html#"
@@ -41,7 +41,7 @@ function getConfig(): ConfigType {
                         "branch": "master",
                         "appUrl": "https://payment-gateway.qa-environment1example-payroll-02example.com",
                         "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
-                        "appInfohUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
+                        "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
                         "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
                         "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
                         "swaggerUrl": "https://payment-gateway.qa-payroll-02example.com/swagger-ui/index.html#"
@@ -51,7 +51,7 @@ function getConfig(): ConfigType {
                         "branch": "master",
                         "appUrl": "https://payment-gateway.qa-environment1example-onboarding-02example.com",
                         "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
-                        "appInfohUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
+                        "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
                         "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
                         "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
                         "swaggerUrl": "https://payment-gateway.qa-payroll-02example.com/swagger-ui/index.html#"
@@ -61,7 +61,7 @@ function getConfig(): ConfigType {
                         "branch": "master",
                         "appUrl": "https://payment-gateway.qa-notification-02example.com",
                         "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
-                        "appInfohUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
+                        "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
                         "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
                         "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
                         "swaggerUrl": "https://payment-gateway.qa-payroll-02example.com/swagger-ui/index.html#"
@@ -71,7 +71,7 @@ function getConfig(): ConfigType {
                         "branch": "master",
                         "appUrl": "https://payment-gateway.qa-payroll-document.com",
                         "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
-                        "appInfohUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
+                        "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
                         "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
                         "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
                         "swaggerUrl": "https://payment-gateway.qa-payroll-02example.com/swagger-ui/index.html#"
@@ -81,7 +81,7 @@ function getConfig(): ConfigType {
                         "branch": "master",
                         "appUrl": "https://payment-gateway.qa-payroll-card.com",
                         "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
-                        "appInfohUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
+                        "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
                         "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
                         "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
                         "swaggerUrl": "https://payment-gateway.qa-payroll-02example.com/swagger-ui/index.html#"
@@ -97,7 +97,7 @@ function getConfig(): ConfigType {
                         "branch": "master",
                         "appUrl": "https://payment-gateway.qa-environment2-payroll-02example.com",
                         "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
-                        "appInfohUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
+                        "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
                         "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
                         "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
                         "swaggerUrl": "https://payment-gateway.qa-payroll-02example.com/swagger-ui/index.html#"
@@ -107,7 +107,7 @@ function getConfig(): ConfigType {
                         "branch": "develop",
                         "appUrl": "https://file-manager.qa-payroll-02example.com",
                         "appHealthUrl": "https://file-manager.qa-payroll-02example.com/meta/health",
-                        "appInfohUrl": "https://file-manager.qa-payroll-02example.com/meta/info",
+                        "appInfoUrl": "https://file-manager.qa-payroll-02example.com/meta/info",
                         "repositoryUrl": "https://bitbucket.org/exampleai/file-manager/commits/branch/develop",
                         "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/file-manager",
                         "swaggerUrl": "https://file-manager.qa-payroll-02example.com/swagger-ui/index.html#"
@@ -123,7 +123,7 @@ function getConfig(): ConfigType {
                         "branch": "master",
                         "appUrl": "https://payment-gateway.qa-environment3example.com",
                         "appHealthUrl": "https://payment-gateway.qa-environment3example.com/meta/health",
-                        "appInfohUrl": "https://payment-gateway.qa-environment3example.com/meta/info",
+                        "appInfoUrl": "https://payment-gateway.qa-environment3example.com/meta/info",
                         "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
                         "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
                         "swaggerUrl": "https://payment-gateway.qa-environment3example.com/swagger-ui/index.html#"

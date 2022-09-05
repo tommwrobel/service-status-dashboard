@@ -1,11 +1,11 @@
 import { useQuery, useQueryClient } from "react-query";
 import { useState } from "react";
-import { ConfigType, ServiceType, ServiceStatus } from "../../../react-app-env";
 import { getEnvironmentsConfig, getServiceHealthStatus } from "../../server/RestClient";
+import { Config } from "../../types/types";
 
 export const useConfigData = () => {
 
-    const [config, setConfig] = useState<ConfigType>();
+    const [config, setConfig] = useState<Config>();
 
     const configQuery = useQuery(
         ['configQuery'],

@@ -1,12 +1,12 @@
-import {ConfigType, HealthCheck} from "../../react-app-env";
+import { Config, HealthCheck } from "../types/types";
 
 const JSON_HEADERS = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
 }
 
-export const getEnvironmentsConfig = (): Promise<ConfigType> => {
-    return new Promise<ConfigType>((resolve, reject) => {
+export const getEnvironmentsConfig = (): Promise<Config> => {
+    return new Promise<Config>((resolve, reject) => {
         fetch('/api/envs-config')
             .then(res => res.json())
             .then(data => resolve(data))

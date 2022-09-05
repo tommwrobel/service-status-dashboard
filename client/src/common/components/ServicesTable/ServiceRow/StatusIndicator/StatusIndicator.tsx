@@ -1,5 +1,5 @@
-import { ServiceStatus } from "../../../../../react-app-env";
 import { ChangeCircle, Circle } from "@mui/icons-material";
+import { ServiceStatus } from "../../../../enums/enums";
 
 type ServiceStatusIndicatorProps = {
     isLoading: boolean,

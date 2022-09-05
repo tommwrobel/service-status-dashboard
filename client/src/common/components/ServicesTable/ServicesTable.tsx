@@ -1,9 +1,9 @@
-import { ServiceType } from "../../../react-app-env";
 import ServiceRow from "./ServiceRow/ServiceRow";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Service } from "../../types/types";
 
 type StatusTableProps = {
-    services: ServiceType[]
+    services: Service[]
 }
 
 const ServicesTable = ({ services }: StatusTableProps) => {

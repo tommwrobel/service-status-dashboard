@@ -23,8 +23,8 @@ export type Config = {
 
 export type HealthCheck = {
     success: boolean,
-    body?: Object,
-    error?: Object
+    body?: object,
+    error?: object
 }
 
 export type GitInfo = {

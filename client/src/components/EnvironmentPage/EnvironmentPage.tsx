@@ -40,7 +40,7 @@ const EnvironmentPage = (): JSX.Element => {
     if (config)
         return (
             <>
-                <Container className="EnvironmentPageContainer">
+                <Container className="EnvironmentPageContainer" maxWidth={false}>
                     <EnvironmentPageBar
                         environments={config?.envs}
                         onEnvironmentChange={setEnvironment}

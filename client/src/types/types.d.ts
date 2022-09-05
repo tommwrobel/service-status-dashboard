@@ -26,3 +26,21 @@ export type HealthCheck = {
     body?: Object,
     error?: Object
 }
+
+export type GitInfo = {
+    branch: string,
+    commit: CommitInfo,
+}
+
+export type CommitInfo = {
+    id: string,
+    time: string,
+}
+
+export type BuildInfo = {
+    artifact: string,
+    name: string,
+    time: string,
+    version: string,
+    group: string,
+}

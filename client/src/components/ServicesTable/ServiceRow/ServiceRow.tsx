@@ -4,8 +4,8 @@ import { TableCell, TableRow } from "@mui/material";
 import { RefreshRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import CopyableLink from "../../CopyableLink/CopyableLink";
-import GitInfo from "../../GitInfo/GitInfo";
 import { Service } from "../../../types/types";
+import ServiceInfo from "../../ServiceInfo/ServiceInfo";
 
 type ServiceRowProps = {
     service: Service,
@@ -15,8 +15,8 @@ const ServiceRow = ({ service }: ServiceRowProps): JSX.Element => {
 
     const {
         serviceStatus,
-        serviceCommit,
-        serviceBranch,
+        gitInfo,
+        buildInfo,
         isError,
         isLoading,
         isFetching,
@@ -31,9 +31,9 @@ const ServiceRow = ({ service }: ServiceRowProps): JSX.Element => {
                 {isError && ("(Error)")}
             </TableCell>
             <TableCell>
-                <GitInfo
-                    branch={serviceBranch}
-                    commit={serviceCommit}
+                <ServiceInfo
+                    gitInfo={gitInfo}
+                    buildInfo={buildInfo}
                     isLoading={isLoading || isFetching}
                 />
             </TableCell>

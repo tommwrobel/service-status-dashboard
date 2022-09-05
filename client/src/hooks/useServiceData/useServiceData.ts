@@ -1,13 +1,13 @@
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { getServiceHealthStatus, getServiceInfo } from "../../server/RestClient";
-import { Service, ServiceStatus } from "../../types/types";
+import { BuildInfo, GitInfo, Service, ServiceStatus } from "../../types/types";
 
 export const useServiceData = (service: Service) => {
 
     const [serviceStatus, setServiceStatus] = useState<ServiceStatus>("Unknown");
-    const [serviceCommit, setServiceCommit] = useState<string | null>(null);
-    const [serviceBranch, setServiceBranch] = useState<string | null>(null);
+    const [gitInfo, setGitInfo] = useState<GitInfo | null>(null);
+    const [buildInfo, setBuildInfo] = useState<BuildInfo | null>(null);
 
     const serviceStatusQuery = useQuery(
         ['service', 'serviceStatusQuery', service.appUrl],
@@ -24,8 +24,8 @@ export const useServiceData = (service: Service) => {
         () => getServiceInfo(service.appInfoUrl),
         {
             onSuccess: (data) => {
-                setServiceCommit(data.body?.git?.commit.id);
-                setServiceBranch(data.body?.git?.branch);
+                setGitInfo(data.body?.git);
+                setBuildInfo(data.body?.build);
             }
         }
     );
@@ -37,8 +37,8 @@ export const useServiceData = (service: Service) => {
 
     return {
         serviceStatus,
-        serviceCommit,
-        serviceBranch,
+        gitInfo,
+        buildInfo,
         isError: serviceStatusQuery.isError || serviceRepoQuery.isError,
         isLoading: serviceStatusQuery.isLoading || serviceRepoQuery.isLoading,
         isFetching: serviceStatusQuery.isFetching || serviceRepoQuery.isFetching,

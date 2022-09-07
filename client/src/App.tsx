@@ -1,26 +1,27 @@
 import React from "react";
 import { QueryClientProvider } from "react-query";
-import { ThemeProvider } from "@mui/material";
 import ApplicationBar from "./components/ApplicationBar/ApplicationBar";
-import CssBaseline from "@mui/material/CssBaseline";
 import EnvironmentPage from "./components/EnvironmentPage/EnvironmentPage";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { darkTheme } from "./config/ThemeConfig";
 import { queryClient } from "./config/ReactQueryConfig";
 import "./App.css";
+import AppSettingsContextProvider from "./context/AppSettingsContext";
+import { defaultAppSettings } from "./config/ApplicationConfig";
+import CustomThemeProvider from "./components/CustomThemeProvider/CustomThemeProvider";
 
 function App() {
+
     return (
         <div className="App">
-            <ThemeProvider theme={darkTheme}>
-                <CssBaseline>
+            <AppSettingsContextProvider settings={defaultAppSettings}>
+                <CustomThemeProvider>
                     <QueryClientProvider client={queryClient}>
-                        <ApplicationBar />
-                        <EnvironmentPage />
+                            <ApplicationBar />
+                            <EnvironmentPage />
                         <ReactQueryDevtools initialIsOpen={false} />
                     </QueryClientProvider>
-                </CssBaseline>
-            </ThemeProvider>
+                </CustomThemeProvider>
+            </AppSettingsContextProvider>
         </div>
     );
 }

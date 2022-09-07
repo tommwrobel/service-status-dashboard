@@ -1,6 +1,7 @@
+import { PaletteMode, Theme } from "@mui/material";
+
 export type ServiceStatus = "Unknown" | "Success" | "Failed";
-export type Columns = "ServiceName" | "Status" | "ServiceInfo" | "Repository" | "Swagger" | "Jenkins" | "Actions";
-export type Theme = "Dark" | "Light";
+export type StatusTableColumn = "ServiceName" | "Status" | "ServiceInfo" | "Repository" | "Swagger" | "Jenkins" | "Actions";
 
 export type Nullable<T> = null | T;
 export type Maybe<T> = T | undefined;
@@ -62,8 +63,11 @@ export interface BuildInfo {
 };
 
 export interface ApplicationSettings {
-    theme: Theme;
-    columns: Columns[];
-    autoRefresh: boolean;
-    autoRefreshRate: number;
+    visibleStatusTableColumns: StatusTableColumn[],
+    showStatusTableColumn?: (column: StatusTableColumn) => void,
+    hideStatusTableColumn?: (column: StatusTableColumn) => void,
+    theme: Theme,
+    setTheme?: (paletteMode: PaletteMode) => void,
+    autoRefreshRate: number,
+    setAutoRefreshRate?: (numberOfSeconds: number) => void,
 }

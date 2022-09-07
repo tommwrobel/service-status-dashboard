@@ -1,0 +1,7 @@
+.ApplicationBar {
+    position: relative;
+}
+
+.Toolbar {
+    justify-content: space-between;
+}

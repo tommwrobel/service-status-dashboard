@@ -1,0 +1,67 @@
+library "utils"
+
+pipeline {
+  agent {
+    kubernetes {
+      yaml """
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          labels:
+            app: service-status-dashboard
+        spec:
+          containers:
+          - name: openjdk
+            image: docker.tools.v2.symmetrical.ai/node:16-alpine
+            command:
+            - cat
+            tty: true
+          - name: kaniko
+            image: gcr.io/kaniko-project/executor:v1.8.0-debug
+            command:
+            - /busybox/cat
+            tty: true
+            volumeMounts:
+            - name: kaniko-secret
+              mountPath: "/kaniko/.docker"
+          volumes:
+          - name: kaniko-secret
+            secret:
+              secretName: regcred
+              items:
+              - key: .dockerconfigjson
+                path: config.json
+          imagePullSecrets:
+          - name: regcred
+        """
+    }
+  }
+  options {
+    ansiColor('xterm')
+    disableConcurrentBuilds()
+    timestamps()
+  }
+  environment {
+    SHORT_COMMIT = getGitCommitShort()
+  }
+  stages {
+    stage("Build Image") {
+      steps {
+        container('kaniko') {
+          script {
+            def imageTag = getImageTag()
+            def image = "service-status-dashboard:$imageTag"
+
+            sh """
+              /kaniko/executor \\
+                --context dir://. \\
+                --dockerfile Dockerfile \\
+                --destination \$DOCKER_DOMAIN/$image \\
+            """
+            currentBuild.displayName = "#$BUILD_NUMBER - $image"
+          }
+        }
+      }
+    }
+  }
+}

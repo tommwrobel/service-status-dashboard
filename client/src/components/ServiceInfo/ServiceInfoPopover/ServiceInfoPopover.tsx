@@ -18,9 +18,7 @@ const ServiceInfoPopover = ({
 }: ServiceInfoPopoverProps): JSX.Element => {
     const open = Boolean(anchorEl);
 
-    const parseGitInfo = (
-        gitInfo: GitInfo
-    ): Record<string, string | number> => {
+    const parseGitInfo = (): Record<string, string | number> => {
         return {
             branch: gitInfo.branch,
             "commit id": gitInfo.commit.id,
@@ -45,8 +43,8 @@ const ServiceInfoPopover = ({
                 disableRestoreFocus
             >
                 <Typography className="InfoBox" component="div">
-                    <ObjectInfoBox data={parseGitInfo(gitInfo)} />
-                    <ObjectInfoBox data={buildInfo} />
+                    <ObjectInfoBox data={parseGitInfo()} />
+                    <ObjectInfoBox data={{...buildInfo}} />
                 </Typography>
             </Popover>
         </>

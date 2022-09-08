@@ -11,49 +11,54 @@ export type Service = {
     jenkinsUrl: string;
 };
 
-export type Environment = {
+export interface Environment {
     name: string;
     configUrl: string;
     services: Service[];
 };
 
-export type Config = {
+export interface Config {
     envs: Environment[];
 };
 
-export type HealthCheck = {
+export interface HealthCheck {
     success: boolean;
     body?: Object;
     error?: Object;
 };
 
-export type ServiceInfoResponse = {
+export interface ServiceInfoResponse {
     success: boolean;
     body?: ServiceInfo;
     error?: Object;
 };
 
-export type ServiceInfo = {
+export interface ServiceInfo {
     git: GitInfo;
     build: BuildInfo;
 };
 
-export type GitInfo = {
+export interface GitInfo {
     branch: string;
     commit: CommitInfo;
 };
 
-export type CommitInfo = {
+export interface CommitInfo {
     id: string;
     time: string;
 };
 
-export type BuildInfo = {
+export interface BuildInfo {
     artifact: string;
     name: string;
     time: string;
     version: string;
     group: string;
+};
+
+export interface ExampleInfo {
+    id: number;
+    name: string;
 };
 
 export type Nullable<T> = null | T;

@@ -15,12 +15,12 @@ const StatusPage = ({config}: StatusPageProps): JSX.Element => {
 
     const [environment, setEnvironment] = useState<Environment>(config.envs[0]);
 
-    const queryClient = useQueryClient();
-    const {services, handleChangeEnvironment} = useServicesData(environment, queryClient);
-
     useEffect(() => {
-        handleChangeEnvironment(environment);
-    }, [environment]);
+        setEnvironment(config.envs[0]);
+    }, [config]);
+
+    const queryClient = useQueryClient();
+    const {services} = useServicesData(environment.services, queryClient);
 
     return (
         <>

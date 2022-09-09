@@ -43,7 +43,7 @@ const AutoTableData = ({ columns, data }: AutoTableDataProps): JSX.Element => {
     return (
         <tbody>
             {data.map((dataRow) => (
-                <TableRow key={JSON.stringify(dataRow)}>
+                <TableRow key={JSON.stringify(dataRow)} hover>
                     {columns
                         .filter((column) => column.isVisible !== false)
                         .map((column) => (

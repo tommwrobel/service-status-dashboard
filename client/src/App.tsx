@@ -5,10 +5,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { darkTheme } from "./config/ThemeConfig";
 import { queryClient } from "./config/ReactQueryConfig";
 import { QueryClientProvider } from '@tanstack/react-query';
-
-import "./App.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ApplicatonContent from "./pages/ApplicationContent/ApplicatonContent";
+import ApplicationContent from "./pages/ApplicationContent/ApplicatonContent";
+import "./App.css";
 
 function App() {
 
@@ -18,7 +17,7 @@ function App() {
                 <CssBaseline>
                     <QueryClientProvider client={queryClient}>
                         <ApplicationBar/>
-                        <ApplicatonContent />
+                        <ApplicationContent />
                         <ReactQueryDevtools/>
                     </QueryClientProvider>
                 </CssBaseline>

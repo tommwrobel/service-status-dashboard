@@ -18,39 +18,19 @@ const AutoTable = (props: AutoTableProps): JSX.Element => {
     const [data, setData] = useState<Maybe<TableDataRow[]>>(undefined);
     const [sortDirection, setSortDirection] = useState<SortDirection>(false);
 
-    const sortData = (data: Maybe<TableDataRow[]>): Maybe<TableDataRow[]> => {
-        if (!data) return undefined;
-        const sortedData: TableDataRow[] = data;
-        if (data && sortBy !== null && sortDirection && columns) {
-            sortedData.sort((a, b) =>
-                tableDataComparator(a[sortBy], b[sortBy], sortDirection, findObjectByKey(sortBy, columns)?.valueComparator));
-        }
-        return sortedData;
-    }
-
     useEffect(() => {
+        const sortData = (
+            data: Maybe<TableDataRow[]>
+        ): Maybe<TableDataRow[]> => {
+            if (!data || !sortBy || !sortDirection || !columns) return data;
+
+            return [...data].sort((a, b) =>
+                tableDataComparator(a[sortBy], b[sortBy], sortDirection,
+                    findObjectByKey(sortBy, columns)?.valueComparator));
+        }
+
         setData(sortData(props.data));
-    }, [props.data]);
-
-    useEffect(() => {
-        setColumns(props.columns);
-    }, [props.columns]);
-
-    useEffect(() => {
-        if (data && sortBy !== null && columns) {
-            const sortedData = [...data];
-            sortedData.sort((a, b) =>
-                tableDataComparator(a[sortBy], b[sortBy], sortDirection, findObjectByKey(sortBy, columns)?.valueComparator));
-            setData(sortedData);
-        }
-        if (sortBy === null) setData(props.data);
-    }, [sortBy, sortDirection]);
-
-    const handleHideColumn = (columnKey: string): void => {
-        setColumns(col => col.map(column => (
-            column.key === columnKey ? {...column, isVisible: false} : column
-        )))
-    };
+    }, [props.data, sortBy, sortDirection, columns]);
 
     const handleSortBy = (columnKey: string): void => {
         if (sortBy === columnKey && sortDirection === 'asc') {
@@ -63,6 +43,13 @@ const AutoTable = (props: AutoTableProps): JSX.Element => {
             setSortDirection('asc');
         }
     }
+
+    const handleHideColumn = (columnKey: string): void => {
+        setColumns(col => col.map(column => (
+            column.key === columnKey ? {...column, isVisible: false} : column
+        )));
+        if (sortBy === columnKey) setSortBy(null);
+    };
 
     return (
         <TableContainer component={Paper}>

@@ -1,4 +1,4 @@
-import { IconButton, SortDirection, TableCell } from "@mui/material";
+import { SortDirection, TableCell } from "@mui/material";
 import { AutoTableColumn } from "../AutoTableTypes";
 import "./AutoTableHeadCell.css";
 import SortByButton from "../SortByButton/SortByButton";

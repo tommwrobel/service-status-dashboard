@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import "./ErrorPage.css";
 import { ErrorOutlineOutlined } from "@mui/icons-material";
 

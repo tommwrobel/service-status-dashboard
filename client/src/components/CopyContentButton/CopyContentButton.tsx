@@ -37,7 +37,7 @@ const CopyContentButton = ({
                 autoHideDuration={3000}
                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 onClose={handleOnSnackbarClose}
-                message="The link has been copied to the clipboard!"
+                message="Text has been copied to the clipboard!"
             />
         </>
     );

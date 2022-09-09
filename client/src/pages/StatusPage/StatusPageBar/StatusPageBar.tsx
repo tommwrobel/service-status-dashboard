@@ -56,7 +56,7 @@ const StatusPageBar = ({
 
                 {currentEnvironment && (
                     <Button
-                        variant="text"
+                        variant="outlined"
                         endIcon={<OpenInNew />}
                         href={currentEnvironment.configUrl}
                         target="_blank"

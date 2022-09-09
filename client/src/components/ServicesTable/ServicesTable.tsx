@@ -33,9 +33,13 @@ const ServicesTable = ({ services }: ServicesTableProps): JSX.Element => {
                     displayName: "Build Info",
                     isSortable: true,
                     isHideable: true,
-                    valueProcessor: (value, data: ServiceRow) => {
-                        return <ServiceInfoBox data={value} dataStatus={data.buildInfoDataStatus}/>
-                    },
+                    valueProcessor: (value, data: ServiceRow) => (
+                        <ServiceInfoBox
+                            data={value}
+                            devBranchName={data.branch}
+                            dataStatus={data.buildInfoDataStatus}
+                        />
+                    ),
                     valueComparator: (a: ServiceInfo, b: ServiceInfo) =>
                         a?.git.branch.localeCompare(b?.git.branch),
                 },

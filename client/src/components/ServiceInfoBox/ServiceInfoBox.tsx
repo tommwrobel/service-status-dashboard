@@ -9,11 +9,13 @@ import "./ServiceInfoBox.css";
 type ServiceInfoBoxProps = {
     data?: ServiceInfo;
     dataStatus?: DataStatus;
+    devBranchName: string;
 };
 
 const ServiceInfoBox = ({
     data,
     dataStatus,
+    devBranchName,
 }: ServiceInfoBoxProps): JSX.Element => {
 
     const [anchorEl, setAnchorEl] = useState<Nullable<HTMLElement>>(null);
@@ -23,6 +25,7 @@ const ServiceInfoBox = ({
     if (!data || dataStatus === undefined) return <>(No data)</>
 
     const getBranchType = (branchName: string): BranchType => {
+        if (branchName === devBranchName) return "develop";
         if (branchName.startsWith('release')) return "release";
         if (branchName.startsWith('master') || branchName.startsWith('main')) return "release";
         if (branchName.startsWith('develop') || branchName.startsWith('dev')) return "develop";

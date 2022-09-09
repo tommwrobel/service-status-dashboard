@@ -1,0 +1,29 @@
+.InfoChip {
+    background: rgb(255, 255, 255, 0.05);
+    display: flex;
+    padding: 2px 12px 2px 2px;
+    border-radius: 99px;
+    align-items: center;
+    max-width: min-content;
+    gap: 2px;
+}
+
+.develop {
+    color: rgba(108, 187, 255);
+    background: rgba(108, 187, 255, 0.1);
+}
+
+.release {
+    color: rgb(130, 210, 105);
+    background: rgba(161, 255, 132, 0.1);
+}
+
+.feature {
+    color: rgb(213, 192, 74);
+    background: rgba(255, 228, 60, 0.1);
+}
+
+.bugfix {
+    color: rgb(190, 94, 94);
+    background: rgba(225, 116, 116, 0.1);
+}

@@ -10,7 +10,7 @@ const HideColumnButton = ({onClick}: HideColumnButtonProps): JSX.Element => {
 
     return (
         <IconButton size="small" onClick={onClick}>
-            <VisibilityOffOutlined fontSize="inherit"/>
+            <VisibilityOffOutlined fontSize="inherit" color="disabled"/>
         </IconButton>
     );
 }

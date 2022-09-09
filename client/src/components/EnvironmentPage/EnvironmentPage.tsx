@@ -3,14 +3,18 @@ import { useConfigData } from "../../hooks/useConfigData/useConfigData";
 import ServicesTable from "../ServicesTable/ServicesTable";
 import { CircularProgress, Container } from "@mui/material";
 import EnvironmentPageBar from "./EnvironmentPageBar/EnvironmentPageBar";
-import { useQueryClient } from "react-query";
-import { Environment, Maybe } from "../../types/types";
+import { Environment, Maybe, Nullable, Service } from "../../types/types";
 import "./EnvironmentPage.css";
+import { useQueryClient } from "@tanstack/react-query";
 
 const EnvironmentPage = (): JSX.Element => {
+
     const queryClient = useQueryClient();
 
     const [environment, setEnvironment] = useState<Maybe<Environment>>();
+    const [services, setServices] = useState<Maybe<Service[]>>();
+
+    const [count, setCount] = useState(0);
 
     const { config, isLoading } = useConfigData();
 
@@ -19,6 +23,12 @@ const EnvironmentPage = (): JSX.Element => {
             setEnvironment(config.envs[0]);
         }
     }, [config, queryClient]);
+
+    useEffect(() => {
+        if (environment) {
+            setServices(environment.services);
+        }
+    }, [environment]);
 
     if (isLoading)
         return (
@@ -39,7 +49,7 @@ const EnvironmentPage = (): JSX.Element => {
                         onEnvironmentChange={setEnvironment}
                     />
                     {environment && (
-                        <ServicesTable services={environment.services} />
+                        <ServicesTable environment={environment} />
                     )}
                 </Container>
             </>

@@ -9,7 +9,13 @@ export const tableDataComparator = (
     valueComparator?: (a: TableDataValue, b: TableDataValue) => number,
 ): number => {
     if (sortDirection === false) return 0;
+
     const sortDirectionModifier = sortDirection === 'desc' ? -1 : 1;
+
+    if ((a === null || a === undefined) && (b === null || b === undefined)) return 0;
+    if ((a !== null && a !== undefined) && (b === null || b === undefined)) return 1 * sortDirectionModifier;
+    if ((a === null || a === undefined) && (b !== null && b !== undefined)) return -1 * sortDirectionModifier;
+
     if ( valueComparator ) return valueComparator(a, b) * sortDirectionModifier;
     if (typeof a === 'string' && typeof b === 'string') return a.localeCompare(b) * sortDirectionModifier;
     if (typeof a === 'number' && typeof b === 'number') return (a - b) * sortDirectionModifier;

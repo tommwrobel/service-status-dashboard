@@ -1,13 +1,14 @@
 import React from "react";
-import { QueryClientProvider } from "react-query";
 import { ThemeProvider } from "@mui/material";
 import ApplicationBar from "./components/ApplicationBar/ApplicationBar";
 import CssBaseline from "@mui/material/CssBaseline";
 import EnvironmentPage from "./components/EnvironmentPage/EnvironmentPage";
-import { ReactQueryDevtools } from "react-query/devtools";
 import { darkTheme } from "./config/ThemeConfig";
 import { queryClient } from "./config/ReactQueryConfig";
+import { QueryClientProvider } from '@tanstack/react-query';
+
 import "./App.css";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
     return (
@@ -15,9 +16,9 @@ function App() {
             <ThemeProvider theme={darkTheme}>
                 <CssBaseline>
                     <QueryClientProvider client={queryClient}>
-                        <ApplicationBar />
-                        <EnvironmentPage />
-                        <ReactQueryDevtools initialIsOpen={false} />
+                        <ApplicationBar/>
+                        <EnvironmentPage/>
+                        <ReactQueryDevtools/>
                     </QueryClientProvider>
                 </CssBaseline>
             </ThemeProvider>

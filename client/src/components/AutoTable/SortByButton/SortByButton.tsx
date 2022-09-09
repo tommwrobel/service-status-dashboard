@@ -1,4 +1,4 @@
-import { IconButton, SortDirection, Tooltip } from "@mui/material";
+import { IconButton, SortDirection } from "@mui/material";
 import {
     ArrowDownwardRounded,
     ArrowUpwardRounded,
@@ -17,7 +17,7 @@ const SortByButton = ({sortDirection, onClick}: SortByButtonProps): JSX.Element 
         <IconButton size="small" onClick={onClick}>
             {sortDirection === 'asc' && <ArrowUpwardRounded color="primary" fontSize="inherit" />}
             {sortDirection === 'desc' && <ArrowDownwardRounded color="primary" fontSize="inherit" />}
-            {sortDirection === false && <SortRounded fontSize="inherit" />}
+            {sortDirection === false && <SortRounded fontSize="inherit" color="disabled"/>}
         </IconButton>
     );
 }

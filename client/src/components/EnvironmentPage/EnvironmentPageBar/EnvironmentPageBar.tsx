@@ -1,4 +1,3 @@
-import { useQueryClient } from "react-query";
 import {
     Button,
     Checkbox,
@@ -14,6 +13,7 @@ import { LoadingButton } from "@mui/lab";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Environment, Maybe } from "../../../types/types";
 import "./EnvironmentPageBar.css";
+import { useQueryClient } from "@tanstack/react-query";
 
 type EnvironmentPageBarProps = {
     environments: Environment[];

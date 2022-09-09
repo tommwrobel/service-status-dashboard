@@ -1,3 +1,5 @@
+import { TableDataRow } from "../components/AutoTable/AutoTableTypes";
+
 export type ServiceStatus = "UP" | "DOWN" | undefined;
 export type DataStatus = "success" | "error" | "loading" | "idle" | undefined;
 export type BranchType = "release" | "master" | "develop" | "feature" | "bugfix" | "other";
@@ -5,7 +7,7 @@ export type BranchType = "release" | "master" | "develop" | "feature" | "bugfix"
 export type Nullable<T> = null | T;
 export type Maybe<T> = T | undefined;
 
-export interface Service {
+export interface Service extends TableDataRow {
     name: string,
     branch: string,
     appUrl: string,
@@ -21,6 +23,12 @@ export interface Service {
 export interface ServiceRowData extends Service {
     dataStatus?: DataStatus,
 };
+
+export interface ServiceRow extends Service {
+    statusDataStatus?: DataStatus,
+    buildInfoDataStatus?: DataStatus,
+    refreshServiceData?: () => void,
+}
 
 export interface Environment {
     name: string,

@@ -1,21 +1,17 @@
-import { Environment, Service, ServiceInfo, ServiceRowData, ServiceStatus } from "../../types/types";
+import { ServiceInfo, ServiceRow, ServiceStatus } from "../../types/types";
 import AutoTable from "../AutoTable/AutoTable";
 import ServiceInfoBox from "../ServiceInfoBox/ServiceInfoBox";
 import CopyableLink from "../CopyableLink/CopyableLink";
 import StatusIndicator from "../StatusIndicator/StatusIndicator";
-import useEnvironmentData from "../../hooks/useEnvironmentData/useEnvironmentData";
-import { useQueryClient } from "@tanstack/react-query";
-import { Button } from "@mui/material";
+import { IconButton } from "@mui/material";
+import { RefreshRounded } from "@mui/icons-material";
 
 type ServicesTableProps = {
-    environment: Environment;
+    services: ServiceRow[];
 };
 
-const ServicesTable = ({ environment }: ServicesTableProps): JSX.Element => {
+const ServicesTable = ({ services }: ServicesTableProps): JSX.Element => {
 
-    const queryClient = useQueryClient();
-    console.log(environment)
-    const {services, handleRefreshServiceData} = useEnvironmentData(environment, queryClient);
     return (
         <AutoTable
             columns={[
@@ -28,8 +24,8 @@ const ServicesTable = ({ environment }: ServicesTableProps): JSX.Element => {
                     key: "status",
                     displayName: "Status",
                     isSortable: true,
-                    valueProcessor: (status: ServiceStatus, data: ServiceRowData) => {
-                        return <StatusIndicator status={status} dataStatus={data.dataStatus}/>
+                    valueProcessor: (status: ServiceStatus, data: ServiceRow) => {
+                        return <StatusIndicator status={status} dataStatus={data.statusDataStatus}/>
                     },
                 },
                 {
@@ -37,8 +33,8 @@ const ServicesTable = ({ environment }: ServicesTableProps): JSX.Element => {
                     displayName: "Build Info",
                     isSortable: true,
                     isHideable: true,
-                    valueProcessor: (value, data: ServiceRowData) => {
-                        return <ServiceInfoBox data={value} dataStatus={data.dataStatus}/>
+                    valueProcessor: (value, data: ServiceRow) => {
+                        return <ServiceInfoBox data={value} dataStatus={data.buildInfoDataStatus}/>
                     },
                     valueComparator: (a: ServiceInfo, b: ServiceInfo) =>
                         a?.git.branch.localeCompare(b?.git.branch),
@@ -62,22 +58,18 @@ const ServicesTable = ({ environment }: ServicesTableProps): JSX.Element => {
                     valueProcessor: (href: string) => <CopyableLink href={href} />
                 },
                 {
-                    key: "refreshData",
+                    key: "refreshServiceData",
                     displayName: "Actions",
-                    valueProcessor: (value) => <Button onClick={value}>Refresh</Button>,
+                    valueProcessor: (refreshRowData: () => void, data: ServiceRow) =>
+                        <IconButton
+                            onClick={refreshRowData}
+                            disabled={data.statusDataStatus === "loading" || data.buildInfoDataStatus === "loading"}
+                        >
+                            <RefreshRounded/>
+                        </IconButton>,
                 },
             ]}
-
-            data={services?.map(service => ({
-                name: service.name,
-                status: service.status,
-                buildInfo: service.buildInfo,
-                repositoryUrl: service.repositoryUrl,
-                swaggerUrl: service.swaggerUrl,
-                jenkinsUrl: service.jenkinsUrl,
-                dataStatus: service.dataStatus,
-                refreshData: () => handleRefreshServiceData(service.appUrl, service.appHealthUrl, service.appInfoUrl),
-            }))}
+            data={services}
         />
     );
 };

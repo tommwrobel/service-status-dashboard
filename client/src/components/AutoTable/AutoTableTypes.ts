@@ -17,6 +17,5 @@ export interface ObjectWithKey {
 export type TableDataValue = string | number | object | undefined | null;
 
 export interface TableDataRow {
-    dataStatus: DataStatus,
     [key: string]: TableDataValue,
 }

@@ -17,6 +17,10 @@ axios.interceptors.response.use(axiosLogger.responseLogger);
 app.use(cors());
 app.use(express.static(__dirname + '/dist'));
 
+app.get('/api/health', (req, res) => {
+    res.json("ok")
+})
+
 app.post('/api/envs-config', bodyParser.text(), (req, res) => {
     const jsonConfig = yaml.load(req.body)
     envsConfig = parseEnvsConfig(jsonConfig)

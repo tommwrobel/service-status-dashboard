@@ -17,7 +17,7 @@ const ServiceInfoBox = ({
 
     const [anchorEl, setAnchorEl] = useState<Nullable<HTMLElement>>(null);
 
-    if (dataStatus === 'loading') return <Skeleton variant="text" width={170} sx={{ fontSize: '1rem' }} />;
+    if (dataStatus === 'loading') return <Skeleton variant="text" width={120} />;
     if (dataStatus === 'error') return <>(Error)</>
     if (!data || dataStatus === undefined) return <>(No data)</>
 

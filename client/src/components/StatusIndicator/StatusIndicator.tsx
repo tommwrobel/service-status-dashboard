@@ -1,6 +1,8 @@
-import { Circle } from "@mui/icons-material";
+import { Circle, ErrorRounded } from "@mui/icons-material";
 import { DataStatus, ServiceStatus } from "../../types/types";
 import { Skeleton } from "@mui/lab";
+import { Box } from "@mui/material";
+import "./StatusIndicator.css";
 
 type ServiceStatusIndicatorProps = {
     status?: ServiceStatus,
@@ -12,12 +14,20 @@ const StatusIndicator = ({
     dataStatus,
 }: ServiceStatusIndicatorProps): JSX.Element => {
 
-    if (dataStatus === 'loading') return <Skeleton variant="circular" width={24} height={24} sx={{ fontSize: '1rem' }} />;
-    if (dataStatus === 'error') return <>Error!</>
+    const getIndicator = (): JSX.Element => {
+        if (dataStatus === 'loading') return <Skeleton variant="circular" width={24} height={24} sx={{ fontSize: '1rem' }} />;
+        if (dataStatus === 'error') return <ErrorRounded color="disabled" />
 
-    if (status === "UP") return <Circle color="success" />;
-    if (status === "DOWN") return <Circle color="error" />;
-    return <Circle color="disabled" />;
+        if (status === "UP") return <Circle color="success" />;
+        if (status === "DOWN") return <Circle color="error" />;
+        return <Circle color="disabled" />;
+    }
+
+    return (
+        <Box className="indicatorContainer">
+            {getIndicator()}
+        </Box>
+    );
 };
 
 export default StatusIndicator;

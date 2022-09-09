@@ -18,10 +18,19 @@ const AutoTable = (props: AutoTableProps): JSX.Element => {
     const [data, setData] = useState<Maybe<TableDataRow[]>>(undefined);
     const [sortDirection, setSortDirection] = useState<SortDirection>(false);
 
+    const sortData = (data: Maybe<TableDataRow[]>): Maybe<TableDataRow[]> => {
+        if (!data) return undefined;
+        const sortedData: TableDataRow[] = data;
+        if (data && sortBy !== null && sortDirection && columns) {
+            sortedData.sort((a, b) =>
+                tableDataComparator(a[sortBy], b[sortBy], sortDirection, findObjectByKey(sortBy, columns)?.valueComparator));
+            setData(sortedData);
+        }
+        return sortedData;
+    }
+
     useEffect(() => {
-        setData(props.data);
-        setSortBy(null);
-        setSortDirection(false);
+        setData(sortData(props.data));
     }, [props.data]);
 
     useEffect(() => {

@@ -1,9 +1,10 @@
 import { BranchType, Nullable, DataStatus, ServiceInfo } from "../../types/types";
 import { Skeleton } from "@mui/lab";
-import { Chip } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { InfoOutlined } from "@mui/icons-material";
 import { useState, MouseEvent } from "react";
 import ServiceInfoPopover from "./ServiceInfoPopover/ServiceInfoPopover";
+import "./ServiceInfoBox.css";
 
 type ServiceInfoBoxProps = {
     data?: ServiceInfo;
@@ -23,24 +24,15 @@ const ServiceInfoBox = ({
 
     const getBranchType = (branchName: string): BranchType => {
         if (branchName.startsWith('release')) return "release";
-        if (branchName.startsWith('master') || branchName.startsWith('main')) return "master";
+        if (branchName.startsWith('master') || branchName.startsWith('main')) return "release";
         if (branchName.startsWith('develop') || branchName.startsWith('dev')) return "develop";
         if (branchName.includes('feature')) return "feature";
         if (branchName.includes('bugfix')) return "bugfix";
         return "other";
     }
 
-    const getBranchColor = (branchName: string): "default" | "success" | "primary" | "warning" | "error" | "secondary" | "info" | undefined => {
-        const branchType = getBranchType(branchName);
-        if (branchType === "release") return "success";
-        if (branchType === "develop" || branchType === "master") return "primary";
-        if (branchType === "feature") return "warning";
-        if (branchType === "bugfix") return "error";
-        return "secondary";
-    }
-
     const handlePopoverOpen = (event: MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget.parentElement);
     };
 
     const handlePopoverClose = () => {
@@ -49,13 +41,21 @@ const ServiceInfoBox = ({
 
     return (
         <>
-            <Chip
-                label={data.git.branch + ' / ' + data.git.commit.id}
-                icon={<InfoOutlined />}
-                color={getBranchColor(data.git.branch)}
-                variant="outlined"
-                onClick={handlePopoverOpen}
-            />
+            <Box className={"InfoChip " + getBranchType(data.git.branch)}>
+                <IconButton
+                    size="small"
+                    onClick={handlePopoverOpen}
+                >
+                    <InfoOutlined fontSize="inherit" />
+                </IconButton>
+                <Typography
+                    color="inherit"
+                    variant="body2"
+                    component="span"
+                >
+                    {data.git.branch}&nbsp;/&nbsp;{data.git.commit.id}
+                </Typography>
+            </Box>
 
             <ServiceInfoPopover
                 anchorEl={anchorEl}

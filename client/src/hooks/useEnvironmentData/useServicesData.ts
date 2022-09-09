@@ -1,10 +1,12 @@
-import {Environment,ServiceRow
+import {
+    DataStatus, Environment, ServiceRow
 } from "../../types/types";
 import { useEffect, useState } from "react";
 import { getServiceHealthStatus, getServiceInfo } from "../../server/RestClient";
-import { useQueries } from "@tanstack/react-query";
+import { QueryClient, QueryKey, useQueries } from "@tanstack/react-query";
+import { QueryState } from "@tanstack/react-query/build/types/packages/query-core/src/query";
 
-const useServicesData = (env: Environment) => {
+const useServicesData = (env: Environment, queryClient: QueryClient) => {
 
     const [services, setServices] = useState<ServiceRow[]>(env.services);
 
@@ -14,7 +16,7 @@ const useServicesData = (env: Environment) => {
 
     const servicesHealthCheckQueries  = useQueries({
         queries: env.services.map(service => ({
-                queryKey: ['serviceHealthCheck', service.appHealthUrl, env.name],
+                queryKey: [service.appHealthUrl, env.name],
                 queryFn: () => getServiceHealthStatus(service.appHealthUrl),
             })
         )
@@ -22,11 +24,29 @@ const useServicesData = (env: Environment) => {
 
     const servicesInfoQueries  = useQueries({
         queries: env.services.map(service => ({
-                queryKey: ['servicesInfo', service.appInfoUrl, env.name],
+                queryKey: [service.appInfoUrl, env.name],
                 queryFn: () => getServiceInfo(service.appInfoUrl)
             })
         )
     });
+
+    const getQueryDataStatus = (queryKey: QueryKey): DataStatus => {
+        const queryState = queryClient.getQueryState(queryKey);
+        if (queryState === undefined) return undefined;
+        if (queryState.fetchStatus === "fetching") return "loading";
+        return queryState.status;
+    }
+
+    const handleRefetchServiceData = (index: number): void => {
+        servicesInfoQueries[index]?.refetch();
+        servicesHealthCheckQueries[index]?.refetch();
+
+        setServices(services => {
+            services[index].statusDataStatus = getQueryDataStatus([services[index].appHealthUrl, env.name]);
+            services[index].buildInfoDataStatus = getQueryDataStatus([services[index].appInfoUrl, env.name]);
+            return services;
+        })
+    }
 
     useEffect(() => {
         let updatedServices: ServiceRow[];
@@ -36,12 +56,9 @@ const useServicesData = (env: Environment) => {
                 status: servicesHealthCheckQueries[index]?.data?.success === true ? 'UP'
                     : servicesHealthCheckQueries[index]?.data?.success === false ? 'DOWN' : undefined,
                 buildInfo: servicesInfoQueries[index]?.data?.body,
-                statusDataStatus: servicesHealthCheckQueries[index]?.status,
-                buildInfoDataStatus: servicesInfoQueries[index]?.status,
-                refreshServiceData: () => {
-                    servicesInfoQueries[index]?.refetch();
-                    servicesHealthCheckQueries[index]?.refetch();
-                },
+                statusDataStatus: getQueryDataStatus([services[index].appHealthUrl, env.name]),
+                buildInfoDataStatus: getQueryDataStatus([services[index].appInfoUrl, env.name]),
+                refreshServiceData: () => handleRefetchServiceData(index),
             };
         });
 
@@ -49,7 +66,7 @@ const useServicesData = (env: Environment) => {
             updatedServices.find((updatedService, index) => updatedService.buildInfoDataStatus !== services[index].buildInfoDataStatus)) {
             setServices(updatedServices);
         }
-    }, [servicesInfoQueries, servicesHealthCheckQueries]);
+    }, [servicesInfoQueries, servicesHealthCheckQueries, services]);
 
     return {services, handleChangeEnvironment};
 }

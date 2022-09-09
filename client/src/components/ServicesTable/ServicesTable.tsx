@@ -69,7 +69,7 @@ const ServicesTable = ({ services }: ServicesTableProps): JSX.Element => {
                         </IconButton>,
                 },
             ]}
-            data={services}
+            data={[...services]}
         />
     );
 };

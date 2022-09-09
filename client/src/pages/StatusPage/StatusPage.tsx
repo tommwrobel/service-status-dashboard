@@ -3,7 +3,7 @@ import ServicesTable from "../../components/ServicesTable/ServicesTable";
 import { Container } from "@mui/material";
 import { Config, Environment } from "../../types/types";
 import "./StatusPage.css";
-import useServicesData from "../../hooks/useEnvironmentData/useServicesData";
+import useServicesData from "../../hooks/useServicesData/useServicesData";
 import StatusPageBar from "./StatusPageBar/StatusPageBar";
 import { useQueryClient } from "@tanstack/react-query";
 

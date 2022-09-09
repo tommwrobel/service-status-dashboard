@@ -24,7 +24,6 @@ const AutoTable = (props: AutoTableProps): JSX.Element => {
         if (data && sortBy !== null && sortDirection && columns) {
             sortedData.sort((a, b) =>
                 tableDataComparator(a[sortBy], b[sortBy], sortDirection, findObjectByKey(sortBy, columns)?.valueComparator));
-            setData(sortedData);
         }
         return sortedData;
     }

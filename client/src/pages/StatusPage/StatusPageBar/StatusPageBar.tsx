@@ -6,10 +6,12 @@ import {
     SelectChangeEvent,
     Toolbar,
 } from "@mui/material";
-import { OpenInNew } from "@mui/icons-material";
+import { OpenInNew, RefreshRounded } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { Environment } from "../../../types/types";
 import "./StatusPageBar.css";
+import { useQueryClient } from "@tanstack/react-query";
+import { LoadingButton } from "@mui/lab";
 
 type StatusPageBarProps = {
     environments: Environment[];
@@ -20,6 +22,7 @@ const StatusPageBar = ({
     environments,
     onEnvironmentChange,
 }: StatusPageBarProps): JSX.Element => {
+
     const [currentEnvironment, setCurrentEnvironment] =
         useState<Environment>(environments[0]);
 
@@ -36,6 +39,13 @@ const StatusPageBar = ({
             onEnvironmentChange(selectedEnvironment);
         }
     };
+
+    const queryClient = useQueryClient();
+
+    const handleRefreshData = () => {
+        queryClient.refetchQueries(['serviceHealth']);
+        queryClient.refetchQueries(['serviceInfo']);
+    }
 
     return (
         <Toolbar className="Toolbar">
@@ -64,6 +74,18 @@ const StatusPageBar = ({
                         Open configuration
                     </Button>
                 )}
+            </div>
+
+            <div className="ToolbarItemsGroup">
+                <LoadingButton
+                    onClick={handleRefreshData}
+                    loading={queryClient.isFetching()  > 0}
+                    variant="outlined"
+                    startIcon={<RefreshRounded />}
+                    loadingPosition="start"
+                >
+                    Refresh Data
+                </LoadingButton>
             </div>
         </Toolbar>
     );

@@ -15,7 +15,7 @@ const useServicesData = (initialServices: Service[], queryClient: QueryClient) =
 
     const servicesHealthCheckQueries  = useQueries({
         queries: services.map(service => ({
-                queryKey: [service.appHealthUrl],
+                queryKey: ['serviceHealth', service.appHealthUrl],
                 queryFn: () => getServiceHealthStatus(service.appHealthUrl),
             })
         )
@@ -23,7 +23,7 @@ const useServicesData = (initialServices: Service[], queryClient: QueryClient) =
 
     const servicesInfoQueries  = useQueries({
         queries: services.map(service => ({
-                queryKey: [service.appInfoUrl],
+                queryKey: ['serviceInfo', service.appInfoUrl],
                 queryFn: () => getServiceInfo(service.appInfoUrl)
             })
         )
@@ -48,8 +48,10 @@ const useServicesData = (initialServices: Service[], queryClient: QueryClient) =
             servicesHealthCheckQueries[index]?.refetch();
 
             setServices(services => {
-                services[index].statusDataStatus = getQueryDataStatus([services[index].appHealthUrl], queryClient);
-                services[index].buildInfoDataStatus = getQueryDataStatus([services[index].appInfoUrl], queryClient);
+                services[index].statusDataStatus
+                    = getQueryDataStatus(['serviceHealth', services[index].appHealthUrl], queryClient);
+                services[index].buildInfoDataStatus
+                    = getQueryDataStatus(['serviceInfo', services[index].appInfoUrl], queryClient);
                 return services;
             })
         }
@@ -60,14 +62,16 @@ const useServicesData = (initialServices: Service[], queryClient: QueryClient) =
                 ...service,
                 status: parseHealthCheckStatus(servicesHealthCheckQueries[index]?.data?.success),
                 buildInfo: servicesInfoQueries[index]?.data?.body,
-                statusDataStatus: getQueryDataStatus([services[index].appHealthUrl], queryClient),
-                buildInfoDataStatus: getQueryDataStatus([services[index].appInfoUrl], queryClient),
+                statusDataStatus: getQueryDataStatus(['serviceHealth', services[index].appHealthUrl], queryClient),
+                buildInfoDataStatus: getQueryDataStatus(['serviceInfo', services[index].appInfoUrl], queryClient),
                 refreshServiceData: () => handleRefetchServiceData(index),
             };
         });
 
-        if (updatedServices.find((updatedService, index) => updatedService.statusDataStatus !== services[index].statusDataStatus) ||
-            updatedServices.find((updatedService, index) => updatedService.buildInfoDataStatus !== services[index].buildInfoDataStatus)) {
+        if (updatedServices.find((updatedService, index) =>
+                updatedService.statusDataStatus !== services[index].statusDataStatus) ||
+            updatedServices.find((updatedService, index) =>
+                updatedService.buildInfoDataStatus !== services[index].buildInfoDataStatus)) {
             setServices(updatedServices);
         }
     }, [servicesInfoQueries, servicesHealthCheckQueries, services, queryClient]);

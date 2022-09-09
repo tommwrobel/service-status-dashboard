@@ -1,7 +1,7 @@
-import { useQuery } from "react-query";
 import { useState } from "react";
 import { getEnvironmentsConfig } from "../../server/RestClient";
 import { Config } from "../../types/types";
+import { useQuery } from "@tanstack/react-query";
 
 export const useConfigData = () => {
     const [config, setConfig] = useState<Config>();

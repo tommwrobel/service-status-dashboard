@@ -1,8 +1,5 @@
-import { useQueryClient } from "react-query";
 import {
     Button,
-    Checkbox,
-    FormControlLabel,
     FormLabel,
     MenuItem,
     Select,
@@ -10,52 +7,45 @@ import {
     Toolbar,
 } from "@mui/material";
 import { OpenInNew, RefreshRounded } from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import { Environment } from "../../../types/types";
+import "./StatusPageBar.css";
+import { useQueryClient } from "@tanstack/react-query";
 import { LoadingButton } from "@mui/lab";
-import { ChangeEvent, useEffect, useState } from "react";
-import { Environment, Maybe } from "../../../types/types";
-import "./EnvironmentPageBar.css";
 
-type EnvironmentPageBarProps = {
+type StatusPageBarProps = {
     environments: Environment[];
-    onEnvironmentChange: (value: Maybe<Environment>) => void;
+    onEnvironmentChange: (value: Environment) => void;
 };
 
-const EnvironmentPageBar = ({
+const StatusPageBar = ({
     environments,
     onEnvironmentChange,
-}: EnvironmentPageBarProps): JSX.Element => {
-    const [currentEnvironment, setCurrentEnvironment] =
-        useState<Maybe<Environment>>();
+}: StatusPageBarProps): JSX.Element => {
 
-    const queryClient = useQueryClient();
+    const [currentEnvironment, setCurrentEnvironment] =
+        useState<Environment>(environments[0]);
 
     useEffect(() => {
         setCurrentEnvironment(environments[0]);
     }, [environments]);
 
-    const handleRefreshData = (): void => {
-        queryClient.refetchQueries(["service"]);
-    };
-
     const handleEnvironmentChange = (event: SelectChangeEvent): void => {
         let selectedEnvironment = environments.find(
             (env) => env.name === event.target.value
         );
-        setCurrentEnvironment(selectedEnvironment);
-        onEnvironmentChange(selectedEnvironment);
+        if (selectedEnvironment) {
+            setCurrentEnvironment(selectedEnvironment);
+            onEnvironmentChange(selectedEnvironment);
+        }
     };
 
-    const handleAutomaticallyRefreshChange = (
-        event: ChangeEvent<HTMLInputElement>
-    ): void => {
-        queryClient.setDefaultOptions({
-            queries: {
-                ...queryClient.getDefaultOptions().queries,
-                refetchInterval: event.target.checked ? 30000 : false,
-            },
-        });
-        queryClient.refetchQueries();
-    };
+    const queryClient = useQueryClient();
+
+    const handleRefreshData = () => {
+        queryClient.refetchQueries(['serviceHealth']);
+        queryClient.refetchQueries(['serviceInfo']);
+    }
 
     return (
         <Toolbar className="Toolbar">
@@ -76,7 +66,7 @@ const EnvironmentPageBar = ({
 
                 {currentEnvironment && (
                     <Button
-                        variant="text"
+                        variant="outlined"
                         endIcon={<OpenInNew />}
                         href={currentEnvironment.configUrl}
                         target="_blank"
@@ -85,27 +75,20 @@ const EnvironmentPageBar = ({
                     </Button>
                 )}
             </div>
-            <div className="ToolbarItemsGroup">
-                <FormControlLabel
-                    control={
-                        <Checkbox onChange={handleAutomaticallyRefreshChange} />
-                    }
-                    label="Auto refresh every 30s"
-                    labelPlacement="start"
-                />
 
+            <div className="ToolbarItemsGroup">
                 <LoadingButton
-                    loading={Boolean(queryClient.isMutating())}
+                    onClick={handleRefreshData}
+                    loading={queryClient.isFetching()  > 0}
                     variant="outlined"
                     startIcon={<RefreshRounded />}
-                    onClick={handleRefreshData}
                     loadingPosition="start"
                 >
-                    Refresh All
+                    Refresh Data
                 </LoadingButton>
             </div>
         </Toolbar>
     );
 };
 
-export default EnvironmentPageBar;
+export default StatusPageBar;

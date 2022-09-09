@@ -1,32 +1,26 @@
 import { Popover, Typography } from "@mui/material";
-import { BuildInfo, GitInfo, Nullable } from "../../../types/types";
+import { GitInfo, Nullable, ServiceInfo } from "../../../types/types";
 import "./ServiceInfoPopover.css";
 import ObjectInfoBox from "../ObjectInfoBox/ObjectInfoBox";
 
 type ServiceInfoPopoverProps = {
     anchorEl: Nullable<HTMLElement>;
-    gitInfo: GitInfo;
-    buildInfo: BuildInfo;
+    data: ServiceInfo;
     onClose: () => void;
 };
 
 const ServiceInfoPopover = ({
     anchorEl,
-    gitInfo,
-    buildInfo,
+    data,
     onClose,
 }: ServiceInfoPopoverProps): JSX.Element => {
     const open = Boolean(anchorEl);
 
-    const parseGitInfo = (
-        gitInfo: GitInfo
-    ): Record<string, string | number> => {
-        return {
-            branch: gitInfo.branch,
+    const parseGitInfo = (gitInfo: GitInfo): Record<string, string | number> => ({
+            "branch": gitInfo.branch,
             "commit id": gitInfo.commit.id,
-            "commit time": gitInfo.commit.time,
-        };
-    };
+            "commit date": gitInfo.commit.time,
+    });
 
     return (
         <>
@@ -42,11 +36,11 @@ const ServiceInfoPopover = ({
                     vertical: "top",
                     horizontal: "center",
                 }}
-                disableRestoreFocus
+                disableEnforceFocus
             >
                 <Typography className="InfoBox" component="div">
-                    <ObjectInfoBox data={parseGitInfo(gitInfo)} />
-                    <ObjectInfoBox data={buildInfo} />
+                    <ObjectInfoBox data={parseGitInfo(data.git)} />
+                    <ObjectInfoBox data={{...data.build}} />
                 </Typography>
             </Popover>
         </>

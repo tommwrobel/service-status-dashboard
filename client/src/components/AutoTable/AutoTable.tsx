@@ -8,11 +8,12 @@ import { findObjectByKey, searchDataRows, tableDataComparator } from "./AutoTabl
 import AutoTableBar from "./AutoTableBar/AutoTableBar";
 
 type AutoTableProps = {
-    title: string;
-    endBarContent?: JSX.Element;
+    title?: string,
     columns: AutoTableColumn[],
     data?: TableDataRow[],
-    searchBy?: string[]
+    searchBy?: string[],
+    startBarContent?: JSX.Element,
+    endBarContent?: JSX.Element,
 }
 
 const AutoTable = (props: AutoTableProps): JSX.Element => {
@@ -35,9 +36,8 @@ const AutoTable = (props: AutoTableProps): JSX.Element => {
                 tableDataComparator(a[sortBy], b[sortBy], sortDirection,
                     findObjectByKey(sortBy, columns)?.valueComparator));
         }
-        // TODO: implement searching
         setData(sortData(searchDataRows(props.data, searchText, props.searchBy)));
-    }, [props.data, sortBy, sortDirection, columns, searchText]);
+    }, [props.data, sortBy, sortDirection, columns, searchText, props.searchBy]);
 
     const handleSortBy = (columnKey: string): void => {
         if (sortBy === columnKey && sortDirection === 'asc') {
@@ -80,6 +80,7 @@ const AutoTable = (props: AutoTableProps): JSX.Element => {
                 isSearchingAvailable={props.searchBy ? true : false}
                 onSearch={setSearchText}
                 onShowAllColumns={handleShowAllColumns}
+                startContent={props.startBarContent}
                 endContent={props.endBarContent}
             />
             <Table>

@@ -6,18 +6,23 @@ import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import { IconButton } from "@mui/material";
 import { RefreshRounded } from "@mui/icons-material";
 import RefreshDataButton from "../RefreshDataButton/RefreshDataButton";
+import useServicesData from "../../hooks/useServicesData/useServicesData";
+import { useQueryClient } from "@tanstack/react-query";
 
 type ServicesTableProps = {
-    services: ServiceRow[];
-    environment: Environment;
+    env: Environment;
 };
 
-const ServicesTable = ({ services, environment }: ServicesTableProps): JSX.Element => {
+const ServicesTable = ({ env }: ServicesTableProps): JSX.Element => {
+
+    const queryClient = useQueryClient();
+
+    const {services} = useServicesData(env.services, queryClient);
 
     return (
         <AutoTable
-            title={`${environment.name} services (${services.length}):`}
             searchBy={['name', 'status', 'buildInfo']}
+            endBarContent={<RefreshDataButton />}
             columns={[
                 {
                     key: "name",

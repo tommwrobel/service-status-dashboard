@@ -6,7 +6,11 @@
 
 .tableBarItemGroup {
     display: flex;
-    gap: 12px
+    gap: 16px
+}
+
+.tableTitle {
+    align-self: center;
 }
 
 .searchInput {

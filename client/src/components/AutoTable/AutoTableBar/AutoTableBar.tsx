@@ -5,7 +5,6 @@ import {
     ListItemText,
     Menu,
     MenuItem,
-    TextField,
     Toolbar,
     Typography
 } from "@mui/material";
@@ -14,21 +13,30 @@ import "./AutoTableBar.css";
 import { ChangeEvent, MouseEvent, useState } from "react";
 
 type AutoTableBarProps = {
-    title: string,
+    title?: string,
     isMenuAvailable: boolean,
     isSearchingAvailable: boolean,
-    onSearch: (value: string) => void;
-    onShowAllColumns: () => void;
-    endContent?: JSX.Element
+    onSearch: (value: string) => void,
+    onShowAllColumns: () => void,
+    startContent?: JSX.Element,
+    endContent?: JSX.Element,
 }
 
-const AutoTableBar = ({title, isMenuAvailable, onSearch, isSearchingAvailable, onShowAllColumns, endContent}: AutoTableBarProps): JSX.Element => {
+const AutoTableBar = ({
+    title,
+    isMenuAvailable,
+    onSearch,
+    isSearchingAvailable,
+    onShowAllColumns,
+    startContent,
+    endContent
+}: AutoTableBarProps): JSX.Element => {
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const isMenuOpen = Boolean(anchorEl);
 
     const handleMenuOpen = (event: MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget.parentElement);
+        setAnchorEl(event.currentTarget);
     };
 
     const handleMenuClose = () => {
@@ -43,13 +51,21 @@ const AutoTableBar = ({title, isMenuAvailable, onSearch, isSearchingAvailable, o
         <>
             <Toolbar className="tableBarContainer">
                 <Box className="tableBarItemGroup">
-                    <Typography variant="h6">
-                        {title}
-                    </Typography>
+                    <IconButton
+                        onClick={handleMenuOpen}
+                        disabled={!isMenuAvailable}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    {title &&
+                        <Typography variant="h6" className="tableTitle">
+                            {title}
+                        </Typography>
+                    }
+                    {startContent}
                 </Box>
 
                 <Box className="tableBarItemGroup">
-                    {endContent}
                     {isSearchingAvailable &&
                         <Input
                             size="small"
@@ -63,12 +79,7 @@ const AutoTableBar = ({title, isMenuAvailable, onSearch, isSearchingAvailable, o
                             }
                         />
                     }
-                    <IconButton
-                        onClick={handleMenuOpen}
-                        disabled={!isMenuAvailable}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    {endContent}
                 </Box>
 
                 <Menu
@@ -77,11 +88,11 @@ const AutoTableBar = ({title, isMenuAvailable, onSearch, isSearchingAvailable, o
                     anchorEl={anchorEl}
                     anchorOrigin={{
                         vertical: 'bottom',
-                        horizontal: 'right',
+                        horizontal: 'left',
                     }}
                     transformOrigin={{
                         vertical: 'top',
-                        horizontal: 'right',
+                        horizontal: 'left',
                     }}
                 >
                     <MenuItem onClick={onShowAllColumns}>

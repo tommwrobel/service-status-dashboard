@@ -1,5 +1,5 @@
 import { OpenInNew } from "@mui/icons-material";
-import { Button, ButtonPropsSizeOverrides } from "@mui/material";
+import { Button } from "@mui/material";
 
 type OutsideLinkButtonProps = {
     url: string,

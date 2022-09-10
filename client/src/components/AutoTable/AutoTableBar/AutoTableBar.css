@@ -1,0 +1,14 @@
+.TableBarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.TableBarItemGroup {
+    display: flex;
+    gap: 12px
+}
+
+.searchInput {
+    width: 360px;
+}

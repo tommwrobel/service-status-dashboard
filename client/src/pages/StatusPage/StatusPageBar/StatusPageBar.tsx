@@ -1,4 +1,5 @@
 import {
+    Box,
     Button,
     FormLabel,
     MenuItem,
@@ -12,6 +13,8 @@ import { Environment } from "../../../types/types";
 import "./StatusPageBar.css";
 import { useQueryClient } from "@tanstack/react-query";
 import { LoadingButton } from "@mui/lab";
+import OutsideLinkButton from "../../../components/OutsideLinkButton/OutsideLinkButton";
+import RefreshDataButton from "../../../components/RefreshDataButton/RefreshDataButton";
 
 type StatusPageBarProps = {
     environments: Environment[];
@@ -40,18 +43,9 @@ const StatusPageBar = ({
         }
     };
 
-    const queryClient = useQueryClient();
-
-    const handleRefreshData = () => {
-        queryClient.refetchQueries(['serviceHealth']);
-        queryClient.refetchQueries(['serviceInfo']);
-    }
-
     return (
         <Toolbar className="Toolbar">
-            <div className="ToolbarItemsGroup">
-                <FormLabel>Environment:</FormLabel>
-
+            <Box className="ToolbarItemsGroup">
                 <Select
                     size={"small"}
                     defaultValue={environments[0].name}
@@ -63,30 +57,13 @@ const StatusPageBar = ({
                         </MenuItem>
                     ))}
                 </Select>
-
-                {currentEnvironment && (
-                    <Button
-                        variant="outlined"
-                        endIcon={<OpenInNew />}
-                        href={currentEnvironment.configUrl}
-                        target="_blank"
-                    >
-                        Open configuration
-                    </Button>
-                )}
-            </div>
-
-            <div className="ToolbarItemsGroup">
-                <LoadingButton
-                    onClick={handleRefreshData}
-                    loading={queryClient.isFetching()  > 0}
-                    variant="outlined"
-                    startIcon={<RefreshRounded />}
-                    loadingPosition="start"
-                >
-                    Refresh Data
-                </LoadingButton>
-            </div>
+                <OutsideLinkButton
+                    url={currentEnvironment.configUrl}
+                    label="open configuration" />
+            </Box>
+            <Box className="ToolbarItemsGroup">
+                <RefreshDataButton />
+            </Box>
         </Toolbar>
     );
 };

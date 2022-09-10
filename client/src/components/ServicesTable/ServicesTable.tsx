@@ -1,19 +1,23 @@
-import { ServiceInfo, ServiceRow, ServiceStatus } from "../../types/types";
+import { Environment, ServiceInfo, ServiceRow, ServiceStatus } from "../../types/types";
 import AutoTable from "../AutoTable/AutoTable";
 import ServiceInfoBox from "../ServiceInfoBox/ServiceInfoBox";
 import CopyableLink from "../CopyableLink/CopyableLink";
 import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import { IconButton } from "@mui/material";
 import { RefreshRounded } from "@mui/icons-material";
+import RefreshDataButton from "../RefreshDataButton/RefreshDataButton";
 
 type ServicesTableProps = {
     services: ServiceRow[];
+    environment: Environment;
 };
 
-const ServicesTable = ({ services }: ServicesTableProps): JSX.Element => {
+const ServicesTable = ({ services, environment }: ServicesTableProps): JSX.Element => {
 
     return (
         <AutoTable
+            title={`${environment.name} services (${services.length}):`}
+            searchBy={['name', 'status', 'buildInfo']}
             columns={[
                 {
                     key: "name",

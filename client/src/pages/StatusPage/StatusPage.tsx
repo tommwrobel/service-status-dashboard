@@ -32,7 +32,7 @@ const StatusPage = ({config}: StatusPageProps): JSX.Element => {
                     environments={config.envs}
                     onEnvironmentChange={setEnvironment}
                 />
-                <ServicesTable services={services} />
+                <ServicesTable services={services} environment={environment}/>
             </Container>
         </>
         );

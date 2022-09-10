@@ -8,9 +8,10 @@ import {
     Toolbar,
     Typography
 } from "@mui/material";
-import { Menu as MenuIcon, SearchRounded, VisibilityOutlined } from "@mui/icons-material";
+import { Clear, Menu as MenuIcon, SearchRounded, VisibilityOutlined } from "@mui/icons-material";
 import "./AutoTableBar.css";
 import { ChangeEvent, MouseEvent, useState } from "react";
+import { Nullable } from "../../../types/types";
 
 type AutoTableBarProps = {
     title?: string,
@@ -32,6 +33,7 @@ const AutoTableBar = ({
     endContent
 }: AutoTableBarProps): JSX.Element => {
 
+    const [searchText, setSearchText] = useState<Nullable<string>>(null);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const isMenuOpen = Boolean(anchorEl);
 
@@ -44,7 +46,13 @@ const AutoTableBar = ({
     };
 
     const handleOnSearch = (event: ChangeEvent<HTMLInputElement>): void => {
+        setSearchText(event.target.value);
         onSearch(event.target.value);
+    }
+
+    const handleClearInput = (event: MouseEvent<HTMLElement>): void => {
+        setSearchText('');
+        onSearch('');
     }
 
     return (
@@ -68,13 +76,25 @@ const AutoTableBar = ({
                 <Box className="tableBarItemGroup">
                     {isSearchingAvailable &&
                         <Input
-                            size="small"
+                            value={searchText}
                             className="searchInput"
+                            size="small"
                             onChange={handleOnSearch}
                             placeholder="Search by name, status, build info..."
                             startAdornment={
                                 <InputAdornment position="start">
                                     <SearchRounded/>
+                                </InputAdornment>
+                            }
+                            endAdornment={
+                                (searchText && searchText.length > 0) && <InputAdornment position="end">
+                                    <IconButton
+                                        size="small"
+                                        color="error"
+                                        onClick={handleClearInput}
+                                    >
+                                        <Clear fontSize="inherit" />
+                                    </IconButton>
                                 </InputAdornment>
                             }
                         />

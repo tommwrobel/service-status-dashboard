@@ -2,6 +2,7 @@ import { Box, FormLabel, MenuItem, Select, SelectChangeEvent } from "@mui/materi
 import OutsideLinkButton from "../OutsideLinkButton/OutsideLinkButton";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import "./EnvironmentSelect.css";
 
 const EnvironmentSelect = (): JSX.Element => {
 
@@ -18,7 +19,7 @@ const EnvironmentSelect = (): JSX.Element => {
     };
     return (
         <>
-            <Box className="toolbarItemsGroup">
+            <Box className="selectEnvContainer">
                 <FormLabel>
                     Environment:
                 </FormLabel>

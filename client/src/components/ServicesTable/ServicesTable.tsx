@@ -5,7 +5,7 @@ import CopyableLink from "../CopyableLink/CopyableLink";
 import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import { IconButton } from "@mui/material";
 import { RefreshRounded } from "@mui/icons-material";
-import RefreshDataButton from "../RefreshDataButton/RefreshDataButton";
+import RefreshDataBar from "../RefreshDataBar/RefreshDataBar";
 import useServicesData from "../../hooks/useServicesData/useServicesData";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -22,7 +22,7 @@ const ServicesTable = ({ env }: ServicesTableProps): JSX.Element => {
     return (
         <AutoTable
             searchBy={['name', 'status', 'buildInfo']}
-            endBarContent={<RefreshDataButton />}
+            endBarContent={<RefreshDataBar />}
             columns={[
                 {
                     key: "name",

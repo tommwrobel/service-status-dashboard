@@ -44,7 +44,7 @@ const ServiceInfoBox = ({
 
     return (
         <>
-            <Box className={"InfoChip " + getBranchType(data.git.branch)}>
+            <Box className={"infoChip " + getBranchType(data.git.branch)}>
                 <IconButton
                     size="small"
                     onClick={handlePopoverOpen}

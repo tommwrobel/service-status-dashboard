@@ -76,7 +76,7 @@ const AutoTableBar = ({
                 <Box className="tableBarItemGroup">
                     {isSearchingAvailable &&
                         <Input
-                            value={searchText}
+                            value={searchText || ''}
                             className="searchInput"
                             size="small"
                             onChange={handleOnSearch}

@@ -7,7 +7,6 @@ import { AppContext } from "../../context/AppContext";
 const StatusPage = (): JSX.Element => {
 
     const {currentEnv} = useContext(AppContext);
-    {console.log(currentEnv)}
 
     return (
         <>

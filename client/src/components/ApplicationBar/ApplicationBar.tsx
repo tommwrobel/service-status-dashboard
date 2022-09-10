@@ -4,7 +4,7 @@ import "./ApplicationBar.css";
 const ApplicationBar = (): JSX.Element => {
     return (
         <AppBar position="relative">
-            <Toolbar className="AppBarToolbar">
+            <Toolbar className="appBarToolbar">
                 <img src="logo.svg" alt="" className="appLogo"/>
                 <Typography variant="h6">Services Status Dashboard</Typography>
             </Toolbar>

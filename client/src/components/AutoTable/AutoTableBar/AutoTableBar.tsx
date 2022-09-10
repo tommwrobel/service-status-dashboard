@@ -41,14 +41,14 @@ const AutoTableBar = ({title, isMenuAvailable, onSearch, isSearchingAvailable, o
 
     return (
         <>
-            <Toolbar className="TableBarContainer">
-                <Box className="TableBarItemGroup">
+            <Toolbar className="tableBarContainer">
+                <Box className="tableBarItemGroup">
                     <Typography variant="h6">
                         {title}
                     </Typography>
                 </Box>
 
-                <Box className="TableBarItemGroup">
+                <Box className="tableBarItemGroup">
                     {endContent}
                     {isSearchingAvailable &&
                         <Input

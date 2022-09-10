@@ -25,7 +25,7 @@ const StatusPage = ({config}: StatusPageProps): JSX.Element => {
     return (
         <>
             <Container
-                className="EnvironmentPageContainer"
+                className="environmentPageContainer"
                 maxWidth={false}
             >
                 <StatusPageBar

@@ -44,8 +44,8 @@ const StatusPageBar = ({
     };
 
     return (
-        <Toolbar className="Toolbar">
-            <Box className="ToolbarItemsGroup">
+        <Toolbar className="toolbar">
+            <Box className="toolbarItemsGroup">
                 <Select
                     size={"small"}
                     defaultValue={environments[0].name}
@@ -61,7 +61,7 @@ const StatusPageBar = ({
                     url={currentEnvironment.configUrl}
                     label="open configuration" />
             </Box>
-            <Box className="ToolbarItemsGroup">
+            <Box className="toolbarItemsGroup">
                 <RefreshDataButton />
             </Box>
         </Toolbar>

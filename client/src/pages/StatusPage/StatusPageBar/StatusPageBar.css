@@ -1,9 +1,9 @@
-.Toolbar {
+.toolbar {
     justify-content: space-between;
     gap: 1rem;
 }
 
-.ToolbarItemsGroup {
+.toolbarItemsGroup {
     display: flex;
     gap: 12px;
     align-items: center;

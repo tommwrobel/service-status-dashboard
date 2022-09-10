@@ -1,0 +1,18 @@
+.tableBarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tableBarItemGroup {
+    display: flex;
+    gap: 16px
+}
+
+.tableTitle {
+    align-self: center;
+}
+
+.searchInput {
+    width: 360px;
+}

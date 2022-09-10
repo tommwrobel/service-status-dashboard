@@ -6,8 +6,9 @@ import { darkTheme } from "./config/ThemeConfig";
 import { queryClient } from "./config/ReactQueryConfig";
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ApplicationContent from "./pages/ApplicationContent/ApplicatonContent";
 import "./App.css";
+import AppContextProvider from "./context/AppContext";
+import ApplicationContent from "./pages/ApplicationContent/ApplicationContent";
 
 function App() {
 
@@ -15,11 +16,13 @@ function App() {
         <div className="App">
             <ThemeProvider theme={darkTheme}>
                 <CssBaseline>
-                    <QueryClientProvider client={queryClient}>
-                        <ApplicationBar/>
-                        <ApplicationContent />
-                        <ReactQueryDevtools/>
-                    </QueryClientProvider>
+                    <AppContextProvider>
+                        <QueryClientProvider client={queryClient}>
+                            <ApplicationBar/>
+                            <ApplicationContent />
+                            <ReactQueryDevtools/>
+                        </QueryClientProvider>
+                    </AppContextProvider>
                 </CssBaseline>
             </ThemeProvider>
         </div>

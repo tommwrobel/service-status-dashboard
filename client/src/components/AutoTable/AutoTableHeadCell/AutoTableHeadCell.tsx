@@ -15,7 +15,7 @@ const AutoTableHeadCell = ({column, onHideColumn, onSortBy, sortDirection}: Auto
 
     return (
         <TableCell>
-            <div className="HeadCellContainer">
+            <div className="headCellContainer">
                 {column.displayName}
 
                 <div>

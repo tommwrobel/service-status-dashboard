@@ -38,7 +38,7 @@ const ServiceInfoPopover = ({
                 }}
                 disableEnforceFocus
             >
-                <Typography className="InfoBox" component="div">
+                <Typography className="infoBox" component="div">
                     <ObjectInfoBox data={parseGitInfo(data.git)} />
                     <ObjectInfoBox data={{...data.build}} />
                 </Typography>

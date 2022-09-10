@@ -30,11 +30,11 @@ const AutoTableData = ({ columns, data }: AutoTableDataProps): JSX.Element => {
         return <>{value}</>;
     };
 
-    if (!data) return (
+    if (!data || data.length === 0) return (
         <tbody>
             <TableRow>
                 <TableCell colSpan={columns.length}>
-                    <span  className="noDataTxt">No data</span>
+                    <span  className="noDataTxt">No available data.</span>
                 </TableCell>
             </TableRow>
         </tbody>

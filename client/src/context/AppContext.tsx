@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { Nullable, Config, Environment } from "../types/types";
 
 type AppContextProps = {
@@ -16,7 +16,7 @@ export const AppContext = createContext<AppContextProps>({
 });
 
 type AppContextProviderProps = {
-    children?: JSX.Element | JSX.Element[],
+    children?: ReactNode,
 }
 
 export const AppContextProvider = ({ children }: AppContextProviderProps): JSX.Element => {

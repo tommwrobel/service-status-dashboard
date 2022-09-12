@@ -1,3 +1,17 @@
+.noDataTxt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.headCellContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
 .tableBarContainer {
     display: flex;
     justify-content: space-between;

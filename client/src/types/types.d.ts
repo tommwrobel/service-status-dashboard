@@ -20,10 +20,6 @@ export interface Service extends TableDataRow {
     buildInfo?: ServiceInfo,
 };
 
-export interface ServiceRowData extends Service {
-    dataStatus?: DataStatus,
-};
-
 export interface ServiceRow extends Service {
     statusDataStatus?: DataStatus,
     buildInfoDataStatus?: DataStatus,
@@ -73,9 +69,4 @@ export interface BuildInfo {
     time: string,
     version: string,
     group: string,
-};
-
-export interface ExampleInfo {
-    id: number,
-    name: string,
 };

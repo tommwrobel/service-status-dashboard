@@ -2,7 +2,7 @@ import { Circle, ErrorRounded } from "@mui/icons-material";
 import { DataStatus, ServiceStatus } from "../../types/types";
 import { Skeleton } from "@mui/lab";
 import { Box } from "@mui/material";
-import "./StatusIndicator.css";
+import classes from "./StatusIndicator.module.css";
 
 type ServiceStatusIndicatorProps = {
     status?: ServiceStatus,
@@ -24,7 +24,7 @@ const StatusIndicator = ({
     }
 
     return (
-        <Box className="indicatorContainer">
+        <Box className={classes.indicatorContainer}>
             {getIndicator()}
         </Box>
     );

@@ -9,7 +9,7 @@ import {
     Typography
 } from "@mui/material";
 import { Clear, Menu as MenuIcon, SearchRounded, VisibilityOutlined } from "@mui/icons-material";
-import "./AutoTableBar.css";
+import classes from "./../AutoTable.module.css";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import { Nullable } from "../../../types/types";
 
@@ -50,15 +50,15 @@ const AutoTableBar = ({
         onSearch(event.target.value);
     }
 
-    const handleClearInput = (event: MouseEvent<HTMLElement>): void => {
+    const handleClearInput = (): void => {
         setSearchText('');
         onSearch('');
     }
 
     return (
         <>
-            <Toolbar className="tableBarContainer">
-                <Box className="tableBarItemGroup">
+            <Toolbar className={classes.tableBarContainer}>
+                <Box className={classes.tableBarItemGroup}>
                     <IconButton
                         onClick={handleMenuOpen}
                         disabled={!isMenuAvailable}
@@ -66,18 +66,18 @@ const AutoTableBar = ({
                         <MenuIcon />
                     </IconButton>
                     {title &&
-                        <Typography variant="h6" className="tableTitle">
+                        <Typography variant="h6" className={classes.tableTitle}>
                             {title}
                         </Typography>
                     }
                     {startContent}
                 </Box>
 
-                <Box className="tableBarItemGroup">
+                <Box className={classes.tableBarItemGroup}>
                     {isSearchingAvailable &&
                         <Input
                             value={searchText || ''}
-                            className="searchInput"
+                            className={classes.searchInput}
                             size="small"
                             onChange={handleOnSearch}
                             placeholder="Search by name, status, build info..."

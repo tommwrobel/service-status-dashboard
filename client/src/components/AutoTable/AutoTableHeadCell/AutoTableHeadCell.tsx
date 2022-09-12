@@ -1,6 +1,6 @@
 import { SortDirection, TableCell } from "@mui/material";
 import { AutoTableColumn } from "../AutoTableTypes";
-import "./AutoTableHeadCell.css";
+import classes from "./../AutoTable.module.css";
 import SortByButton from "../SortByButton/SortByButton";
 import HideColumnButton from "../HideColumnButton/HideColumnButton";
 
@@ -15,7 +15,7 @@ const AutoTableHeadCell = ({column, onHideColumn, onSortBy, sortDirection}: Auto
 
     return (
         <TableCell>
-            <div className="headCellContainer">
+            <div className={classes.headCellContainer}>
                 {column.displayName}
 
                 <div>

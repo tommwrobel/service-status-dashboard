@@ -1,5 +1,5 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
-import "./LoadingPage.css";
+import classes from "./LoadingPage.module.css";
 
 type LoadingPageProps = {
     message?: string,
@@ -7,7 +7,7 @@ type LoadingPageProps = {
 
 const LoadingPage = ({message}: LoadingPageProps): JSX.Element => {
     return (
-            <Box className="loadingPageContainer">
+            <Box className={classes.loadingPageContainer}>
                 <CircularProgress />
                 {message && <Typography>{message}</Typography>}
             </Box>

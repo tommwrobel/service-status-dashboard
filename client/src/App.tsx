@@ -6,7 +6,7 @@ import { darkTheme } from "./config/ThemeConfig";
 import { queryClient } from "./config/ReactQueryConfig";
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import "./App.css";
+import "./App.module.css";
 import AppContextProvider from "./context/AppContext";
 import ApplicationContent from "./pages/ApplicationContent/ApplicationContent";
 

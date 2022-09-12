@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ServicesTable from "../../components/ServicesTable/ServicesTable";
 import { Container } from "@mui/material";
-import "./StatusPage.css";
+import classes from "./StatusPage.module.css";
 import { AppContext } from "../../context/AppContext";
 
 const StatusPage = (): JSX.Element => {
@@ -11,7 +11,7 @@ const StatusPage = (): JSX.Element => {
     return (
         <>
             <Container
-                className="environmentPageContainer"
+                className={classes.environmentPageContainer}
                 maxWidth={false}
             >
                 {currentEnv && <ServicesTable env={currentEnv} />}

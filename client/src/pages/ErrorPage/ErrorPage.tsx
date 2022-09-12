@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import "./ErrorPage.css";
+import classes from "./ErrorPage.module.css";
 import { ErrorOutlineOutlined } from "@mui/icons-material";
 
 type ErrorPageProps = {
@@ -9,10 +9,10 @@ type ErrorPageProps = {
 const ErrorPage = ({message}: ErrorPageProps): JSX.Element => {
     return (
         <Box
-            className="errorPageContainer"
+            className={classes.errorPageContainer}
         >
-            <ErrorOutlineOutlined className="errorIcon" color="error"  fontSize="large"/>
-            {message && <Typography className="message">{message}</Typography>}
+            <ErrorOutlineOutlined className={classes.errorIcon} color="error"  fontSize="large"/>
+            {message && <Typography className={classes.message}>{message}</Typography>}
         </Box>
     );
 };

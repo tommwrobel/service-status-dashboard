@@ -27,3 +27,7 @@
     color: rgb(190, 94, 94);
     background: rgba(225, 116, 116, 0.1);
 }
+
+.other {
+    background: rgb(255, 255, 255, 0.05);
+}

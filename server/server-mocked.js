@@ -52,7 +52,7 @@ function getConfig() {
             "name": "onboarding",
             "branch": "master",
             "appUrl": "https://payment-gateway.qa-environment1example-onboarding-02example.com",
-            "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
+            "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/me3ta/health",
             "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
             "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
             "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
@@ -62,7 +62,7 @@ function getConfig() {
             "name": "notification-api",
             "branch": "master",
             "appUrl": "https://payment-gateway.qa-notification-02example.com",
-            "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
+            "appHealthUrl": "https://payment-gateway.qa-payroll-02exa1mple.com/meta/health",
             "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
             "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
             "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
@@ -72,7 +72,7 @@ function getConfig() {
             "name": "document-manager",
             "branch": "master",
             "appUrl": "https://payment-gateway.qa-payroll-document.com",
-            "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
+            "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/4meta/health",
             "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
             "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
             "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
@@ -82,7 +82,7 @@ function getConfig() {
             "name": "card-management-system",
             "branch": "master",
             "appUrl": "https://payment-gateway.qa-payroll-card.com",
-            "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
+            "appHealthUrl": "https://payment-gateway.qa-payrol5l-02example.com/meta/health",
             "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
             "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
             "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
@@ -98,7 +98,7 @@ function getConfig() {
             "name": "payment-gateway",
             "branch": "master",
             "appUrl": "https://payment-gateway.qa-environment2-payroll-02example.com",
-            "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/meta/health",
+            "appHealthUrl": "https://payment-gateway.qa-payroll-02example.com/1meta/health",
             "appInfoUrl": "https://payment-gateway.qa-payroll-02example.com/meta/info",
             "repositoryUrl": "https://bitbucket.org/exampleai/payment-gateway/commits/branch/master",
             "jenkinsUrl": "https://jenkins.example.ai/job/applications/job/payment-gateway",
@@ -154,7 +154,7 @@ function getInfo() {
   const ok = {
     success: true, body: {
       "git": {
-        "branch": "develop",
+        "branch": getRandomItem(["develop", "master","feature","bugfix","release"], [4, 2, 2, 1, 4]),
         "commit": {
           "id": "ee88" + Math.floor(Math.random() * 10000),
           "time": new Date().toISOString()
@@ -170,15 +170,32 @@ function getInfo() {
     }
   }
   const error = {success: false, error: {"message": "service unavailable"}}
-  return getRandomItem([ok, error])
-}
-
-function getRandomItem(items) {
-  return items[Math.floor(Math.random() * items.length)];
+  return getRandomItem([ok, error], [5, 1])
 }
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
+}
+
+const getRandomItem = (arr, probs) => {
+  if (probs && probs.length === arr.length) {
+    const randomNumber = getRandomInt(10000);
+    const sumOfProbs = probs.reduce((x, y, index) => x + y, 0);
+    let weights = [];
+
+    for (let i = 0; i < probs.length; i++) {
+      const prevElem = i > 0 ? weights[i - 1] : 0;
+      const resultElement = (10000 / sumOfProbs * probs[i]) + prevElem;
+      weights.push(resultElement);
+    }
+
+    return arr.find((element, index) => {
+      const min = index > 0 ? weights[index - 1] : 0;
+      return (min < randomNumber && weights[index] > randomNumber);
+    });
+  }
+  return arr[getRandomInt(arr.length)];
+
 }
 
 

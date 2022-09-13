@@ -14,16 +14,16 @@ const useServicesData = (initialServices: Service[], queryClient: QueryClient) =
 
     const servicesHealthCheckQueries  = useQueries({
         queries: services.map(service => ({
-                queryKey: ['serviceHealth', service.appHealthUrl],
-                queryFn: () => getServiceHealthStatus(service.appHealthUrl),
+                queryKey: ['serviceHealth', service.appUrl],
+                queryFn: () => getServiceHealthStatus(service.appUrl),
             })
         )
     });
 
     const servicesInfoQueries  = useQueries({
         queries: services.map(service => ({
-                queryKey: ['serviceInfo', service.appInfoUrl],
-                queryFn: () => getServiceInfo(service.appInfoUrl)
+                queryKey: ['serviceInfo', service.appUrl],
+                queryFn: () => getServiceInfo(service.appUrl)
             })
         )
     });
@@ -35,9 +35,9 @@ const useServicesData = (initialServices: Service[], queryClient: QueryClient) =
 
             setServices(services => {
                 services[index].statusDataStatus
-                    = getQueryDataStatus(['serviceHealth', services[index].appHealthUrl], queryClient);
+                    = getQueryDataStatus(['serviceHealth', services[index].appUrl], queryClient);
                 services[index].buildInfoDataStatus
-                    = getQueryDataStatus(['serviceInfo', services[index].appInfoUrl], queryClient);
+                    = getQueryDataStatus(['serviceInfo', services[index].appUrl], queryClient);
                 return services;
             })
         }
@@ -48,8 +48,8 @@ const useServicesData = (initialServices: Service[], queryClient: QueryClient) =
                 ...service,
                 status: parseHealthCheckStatus(servicesHealthCheckQueries[index]?.data?.success),
                 buildInfo: servicesInfoQueries[index]?.data?.body,
-                statusDataStatus: getQueryDataStatus(['serviceHealth', services[index].appHealthUrl], queryClient),
-                buildInfoDataStatus: getQueryDataStatus(['serviceInfo', services[index].appInfoUrl], queryClient),
+                statusDataStatus: getQueryDataStatus(['serviceHealth', services[index].appUrl], queryClient),
+                buildInfoDataStatus: getQueryDataStatus(['serviceInfo', services[index].appUrl], queryClient),
                 refreshServiceData: () => handleRefetchServiceData(index),
             };
         });

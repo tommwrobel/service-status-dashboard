@@ -56,7 +56,7 @@ const ServiceInfoBox = ({
                 >
                     {data.git.branch}
                 </Typography>
-                <CommitRounded className={classes.commitIcon}/>
+                <CommitRounded fontSize="small" className={classes.commitIcon}/>
                 <Typography
                     color="inherit"
                     variant="body2"

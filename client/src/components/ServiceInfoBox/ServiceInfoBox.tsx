@@ -1,7 +1,7 @@
 import { Nullable, DataStatus, ServiceInfo } from "../../types/types";
 import { Skeleton } from "@mui/lab";
 import { Box, IconButton, Typography } from "@mui/material";
-import { InfoOutlined } from "@mui/icons-material";
+import { CommitRounded, InfoOutlined } from "@mui/icons-material";
 import { useState, MouseEvent } from "react";
 import ServiceInfoPopover from "./ServiceInfoPopover/ServiceInfoPopover";
 import classes from "./ServiceInfoBox.module.css";
@@ -54,7 +54,15 @@ const ServiceInfoBox = ({
                     variant="body2"
                     component="span"
                 >
-                    {data.git.branch}&nbsp;/&nbsp;{data.git.commit.id}
+                    {data.git.branch}
+                </Typography>
+                <CommitRounded className={classes.commitIcon}/>
+                <Typography
+                    color="inherit"
+                    variant="body2"
+                    component="span"
+                >
+                    {data.git.commit.id}
                 </Typography>
             </Box>
 

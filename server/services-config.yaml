@@ -1,0 +1,45 @@
+jenkinsUrl: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/
+envConfigUrl: https://bitbucket.org/symmetricalai/environments/src/main/qa/
+
+servicePaths:
+  health: /meta/health
+  info: /meta/info
+  swagger: /swagger-ui/index.html#
+
+envs:
+  qa-payroll-01:
+    file-importer: https://file-importer.qa-payroll-01.dev.v2.symmetrical.ai
+    revenue-aggregator: https://revenue-aggregator.qa-payroll-01.dev.v2.symmetrical.ai
+    employee-onboarding: https://employee-onboarding.qa-payroll-01.dev.v2.symmetrical.ai
+    employee-management: https://employee-management.qa-payroll-01.dev.v2.symmetrical.ai
+    employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-payroll-01.dev.v2.symmetrical.ai
+  qa-payroll-02:
+    revenue-aggregator: https://revenue-aggregator.qa-payroll-02.dev.v2.symmetrical.ai
+    file-importer: https://file-importer.qa-payroll-02.dev.v2.symmetrical.ai
+    employee-onboarding: https://employee-onboarding.qa-payroll-02.dev.v2.symmetrical.ai
+    employee-management: https://employee-management.qa-payroll-02.dev.v2.symmetrical.ai
+    employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-payroll-02.dev.v2.symmetrical.ai
+  qa-integration-01:
+    file-importer: https://file-importer.qa-integration-01.dev.v2.symmetrical.ai
+    revenue-aggregator: https://revenue-aggregator.qa-integration-01.dev.v2.symmetrical.ai
+    employee-onboarding: https://employee-onboarding.qa-integration-01.dev.v2.symmetrical.ai
+    employee-management: https://employee-management.qa-integration-01.dev.v2.symmetrical.ai
+    employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-integration-01.dev.v2.symmetrical.ai
+
+
+services:
+  revenue-aggregator:
+    branch: master
+    repository: https://bitbucket.org/symmetricalai/revenue-aggregator
+  file-importer:
+    branch: develop
+    repository: https://bitbucket.org/symmetricalai/file-importer
+  employee-onboarding:
+    branch: dev
+    repository: https://bitbucket.org/symmetricalai/employee-onboarding
+  employee-management:
+    branch: develop
+    repository: https://bitbucket.org/symmetricalai/employee-management
+  employee-web-gateway-proxy:
+    branch: master
+    repository: https://bitbucket.org/symmetricalai/employee-web-gateway-proxy

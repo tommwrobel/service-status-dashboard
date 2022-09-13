@@ -1,19 +1,28 @@
-import { ServiceInfo, ServiceRow, ServiceStatus } from "../../types/types";
+import { Environment, ServiceInfo, ServiceRow, ServiceStatus } from "../../types/types";
 import AutoTable from "../AutoTable/AutoTable";
 import ServiceInfoBox from "../ServiceInfoBox/ServiceInfoBox";
 import CopyableLink from "../CopyableLink/CopyableLink";
 import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import { IconButton } from "@mui/material";
 import { RefreshRounded } from "@mui/icons-material";
+import RefreshDataBar from "../RefreshDataBar/RefreshDataBar";
+import useServicesData from "../../hooks/useServicesData/useServicesData";
+import { useQueryClient } from "@tanstack/react-query";
 
 type ServicesTableProps = {
-    services: ServiceRow[];
+    env: Environment;
 };
 
-const ServicesTable = ({ services }: ServicesTableProps): JSX.Element => {
+const ServicesTable = ({ env }: ServicesTableProps): JSX.Element => {
+
+    const queryClient = useQueryClient();
+
+    const {services} = useServicesData(env.services, queryClient);
 
     return (
         <AutoTable
+            searchBy={['name', 'status', 'buildInfo']}
+            endBarContent={<RefreshDataBar />}
             columns={[
                 {
                     key: "name",

@@ -6,7 +6,7 @@ type ObjectInfoBoxProps = {
 
 const ObjectInfoBox = ({ data }: ObjectInfoBoxProps): JSX.Element => {
     return (
-        <ul className="InfoBoxWrapper">
+        <ul className="infoBoxWrapper">
             {Object.entries(data).map(([key, value]) => (
                 <li key={key}>
                     <span className="infoKey">{key}:&nbsp;</span>

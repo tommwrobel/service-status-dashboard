@@ -1,10 +1,10 @@
-import { BranchType, Nullable, DataStatus, ServiceInfo } from "../../types/types";
+import { Nullable, DataStatus, ServiceInfo } from "../../types/types";
 import { Skeleton } from "@mui/lab";
 import { Box, IconButton, Typography } from "@mui/material";
 import { InfoOutlined } from "@mui/icons-material";
 import { useState, MouseEvent } from "react";
 import ServiceInfoPopover from "./ServiceInfoPopover/ServiceInfoPopover";
-import "./ServiceInfoBox.css";
+import classes from "./ServiceInfoBox.module.css";
 
 type ServiceInfoBoxProps = {
     data?: ServiceInfo;
@@ -24,14 +24,12 @@ const ServiceInfoBox = ({
     if (dataStatus === 'error') return <>(Error)</>
     if (!data || dataStatus === undefined) return <>(No data)</>
 
-    const getBranchType = (branchName: string): BranchType => {
-        if (branchName === devBranchName) return "develop";
-        if (branchName.startsWith('release')) return "release";
-        if (branchName.startsWith('master') || branchName.startsWith('main')) return "release";
-        if (branchName.startsWith('develop') || branchName.startsWith('dev')) return "develop";
-        if (branchName.includes('feature')) return "feature";
-        if (branchName.includes('bugfix')) return "bugfix";
-        return "other";
+    const getBranchTypeClassName = (branchName: string): string => {
+        if (branchName === devBranchName || branchName.startsWith('dev')) return classes.develop;
+        if (branchName.startsWith('release') || branchName.startsWith('master') || branchName.startsWith('main')) return classes.release;
+        if (branchName.includes('feature')) return classes.feature;
+        if (branchName.includes('bugfix')) return classes.bugfix;
+        return classes.feature;
     }
 
     const handlePopoverOpen = (event: MouseEvent<HTMLElement>) => {
@@ -44,7 +42,7 @@ const ServiceInfoBox = ({
 
     return (
         <>
-            <Box className={"InfoChip " + getBranchType(data.git.branch)}>
+            <Box className={`${classes.infoChip} ${getBranchTypeClassName(data.git.branch)}`}>
                 <IconButton
                     size="small"
                     onClick={handlePopoverOpen}

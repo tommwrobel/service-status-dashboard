@@ -5,7 +5,7 @@ import {
 } from "../AutoTableTypes";
 import { Maybe } from "../../../types/types";
 import { TableCell, TableRow } from "@mui/material";
-import "./../AutoTable.css";
+import classes from "./../AutoTable.module.css";
 
 type AutoTableDataProps = {
     columns: AutoTableColumn[];
@@ -30,11 +30,11 @@ const AutoTableData = ({ columns, data }: AutoTableDataProps): JSX.Element => {
         return <>{value}</>;
     };
 
-    if (!data) return (
+    if (!data || data.length === 0) return (
         <tbody>
             <TableRow>
                 <TableCell colSpan={columns.length}>
-                    <span  className="noDataTxt">No data</span>
+                    <span  className={classes.noDataTxt}>No available data.</span>
                 </TableCell>
             </TableRow>
         </tbody>

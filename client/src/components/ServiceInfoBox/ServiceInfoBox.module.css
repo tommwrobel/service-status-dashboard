@@ -1,4 +1,4 @@
-.InfoChip {
+.infoChip {
     background: rgb(255, 255, 255, 0.05);
     display: flex;
     padding: 2px 12px 2px 2px;
@@ -26,4 +26,8 @@
 .bugfix {
     color: rgb(190, 94, 94);
     background: rgba(225, 116, 116, 0.1);
+}
+
+.other {
+    background: rgb(255, 255, 255, 0.05);
 }

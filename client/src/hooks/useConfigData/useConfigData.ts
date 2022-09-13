@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useConfigData = () => {
     const [config, setConfig] = useState<Config>();
-
     const configQuery = useQuery(
         ["configQuery"],
         () => getEnvironmentsConfig(),

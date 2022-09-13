@@ -1,9 +1,8 @@
-import {
-    DataStatus, Maybe, Service, ServiceRow, ServiceStatus
-} from "../../types/types";
+import { Service, ServiceRow } from "../../types/types";
 import { useEffect, useState } from "react";
 import { getServiceHealthStatus, getServiceInfo } from "../../server/RestClient";
-import { QueryClient, QueryKey, useQueries } from "@tanstack/react-query";
+import { QueryClient, useQueries } from "@tanstack/react-query";
+import { getQueryDataStatus, parseHealthCheckStatus } from "./useServicesDataSupport";
 
 const useServicesData = (initialServices: Service[], queryClient: QueryClient) => {
 
@@ -28,19 +27,6 @@ const useServicesData = (initialServices: Service[], queryClient: QueryClient) =
             })
         )
     });
-
-    const getQueryDataStatus = (queryKey: QueryKey, queryClient: QueryClient): DataStatus => {
-        const queryState = queryClient.getQueryState(queryKey);
-        if (queryState === undefined) return undefined;
-        if (queryState.fetchStatus === "fetching") return "loading";
-        return queryState.status;
-    }
-
-    const parseHealthCheckStatus = (status: Maybe<boolean>): ServiceStatus => {
-        if(status === true) return "UP";
-        if(status === false) return "DOWN";
-        return undefined;
-    }
 
     useEffect(() => {
         const handleRefetchServiceData = (index: number): void => {

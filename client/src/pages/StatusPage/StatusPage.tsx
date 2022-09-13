@@ -1,41 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import ServicesTable from "../../components/ServicesTable/ServicesTable";
 import { Container } from "@mui/material";
-import { Config, Environment } from "../../types/types";
-import "./StatusPage.css";
-import useServicesData from "../../hooks/useServicesData/useServicesData";
-import StatusPageBar from "./StatusPageBar/StatusPageBar";
-import { useQueryClient } from "@tanstack/react-query";
+import classes from "./StatusPage.module.css";
+import { AppContext } from "../../context/AppContext";
 
-type StatusPageProps = {
-    config: Config,
-}
+const StatusPage = (): JSX.Element => {
 
-const StatusPage = ({config}: StatusPageProps): JSX.Element => {
-
-    const [environment, setEnvironment] = useState<Environment>(config.envs[0]);
-
-    useEffect(() => {
-        setEnvironment(config.envs[0]);
-    }, [config]);
-
-    const queryClient = useQueryClient();
-    const {services} = useServicesData(environment.services, queryClient);
+    const {currentEnv} = useContext(AppContext);
 
     return (
         <>
             <Container
-                className="EnvironmentPageContainer"
+                className={classes.environmentPageContainer}
                 maxWidth={false}
             >
-                <StatusPageBar
-                    environments={config.envs}
-                    onEnvironmentChange={setEnvironment}
-                />
-                <ServicesTable services={services} />
+                {currentEnv && <ServicesTable env={currentEnv} />}
             </Container>
         </>
-        );
+    );
 };
 
 export default StatusPage;

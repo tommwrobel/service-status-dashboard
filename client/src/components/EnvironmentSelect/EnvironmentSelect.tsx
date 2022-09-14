@@ -38,7 +38,7 @@ const EnvironmentSelect = (): JSX.Element => {
 
                 <OutsideLinkButton
                     url={currentEnv.configUrl}
-                    label="open configuration"
+                    label="configuration"
                 />
             </Box>
         </>

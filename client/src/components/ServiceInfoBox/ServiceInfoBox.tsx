@@ -1,4 +1,4 @@
-import { Nullable, DataStatus, ServiceInfo } from "../../types/types";
+import { Nullable, DataStatus, ServiceInfo, BranchType } from "../../types/types";
 import { Skeleton } from "@mui/lab";
 import { Box, IconButton, Typography } from "@mui/material";
 import { CommitRounded, InfoOutlined } from "@mui/icons-material";
@@ -24,12 +24,20 @@ const ServiceInfoBox = ({
     if (dataStatus === 'error') return <>(Error)</>
     if (!data || dataStatus === undefined) return <>(No data)</>
 
-    const getBranchTypeClassName = (branchName: string): string => {
-        if (branchName === devBranchName || branchName.startsWith('dev')) return classes.develop;
-        if (branchName.startsWith('release') || branchName.startsWith('master') || branchName.startsWith('main')) return classes.release;
-        if (branchName.includes('feature')) return classes.feature;
-        if (branchName.includes('bugfix')) return classes.bugfix;
-        return classes.feature;
+    const getBranchType = (branchName: string): BranchType => {
+        if (branchName === devBranchName || branchName.startsWith('dev')) return "develop";
+        if (branchName.startsWith('release') || branchName.startsWith('master') || branchName.startsWith('main')) return "release";
+        if (branchName.includes('feature')) return "feature";
+        if (branchName.includes('bugfix')) return "bugfix";
+        return "other";
+    }
+
+    const getBranchTypeClass = (branchType: BranchType): string => {
+        if (branchType === 'develop') return classes.develop;
+        if (branchType === 'release') return classes.release;
+        if (branchType === 'feature') return classes.feature;
+        if (branchType === 'bugfix') return classes.bugfix;
+        return classes.other;
     }
 
     const handlePopoverOpen = (event: MouseEvent<HTMLElement>) => {
@@ -42,7 +50,7 @@ const ServiceInfoBox = ({
 
     return (
         <>
-            <Box className={`${classes.infoChip} ${getBranchTypeClassName(data.git.branch)}`}>
+            <Box className={`${classes.infoChip} ${getBranchTypeClass(getBranchType(data.git.branch))}`}>
                 <IconButton
                     size="small"
                     onClick={handlePopoverOpen}
@@ -56,14 +64,18 @@ const ServiceInfoBox = ({
                 >
                     {data.git.branch}
                 </Typography>
-                <CommitRounded fontSize="small" className={classes.commitIcon}/>
-                <Typography
-                    color="inherit"
-                    variant="body2"
-                    component="span"
-                >
-                    {data.git.commit.id}
-                </Typography>
+                {getBranchType(data.git.branch) !== 'release' &&
+                    <>
+                        <CommitRounded fontSize="small" className={classes.commitIcon} />
+                        <Typography
+                        color="inherit"
+                        variant="body2"
+                        component="span"
+                        >
+                            {data.git.commit.id}
+                        </Typography>
+                    </>
+                }
             </Box>
 
             <ServiceInfoPopover

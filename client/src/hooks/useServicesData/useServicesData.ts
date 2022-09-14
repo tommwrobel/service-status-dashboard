@@ -15,7 +15,7 @@ const useServicesData = (initialServices: Service[], queryClient: QueryClient) =
     const servicesHealthCheckQueries  = useQueries({
         queries: services.map(service => ({
                 queryKey: ['serviceHealth', service.appUrl],
-                queryFn: () => getServiceHealthStatus(service.appUrl),
+                queryFn: () => getServiceHealthStatus(service.appHealthUrl),
             })
         )
     });
@@ -23,7 +23,7 @@ const useServicesData = (initialServices: Service[], queryClient: QueryClient) =
     const servicesInfoQueries  = useQueries({
         queries: services.map(service => ({
                 queryKey: ['serviceInfo', service.appUrl],
-                queryFn: () => getServiceInfo(service.appUrl)
+                queryFn: () => getServiceInfo(service.appInfoUrl)
             })
         )
     });

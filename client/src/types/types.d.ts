@@ -2,7 +2,7 @@ import { TableDataRow } from "../components/AutoTable/AutoTableTypes";
 
 export type ServiceStatus = "UP" | "DOWN" | undefined;
 export type DataStatus = "success" | "error" | "loading" | "idle" | undefined;
-export type BranchType = "release" | "master" | "develop" | "feature" | "bugfix" | "other";
+export type BranchType = "release" | "develop" | "feature" | "bugfix" | "other";
 
 export type Nullable<T> = null | T;
 export type Maybe<T> = T | undefined;

@@ -61,6 +61,7 @@ const ServiceInfoBox = ({
                     color="inherit"
                     variant="body2"
                     component="span"
+                    noWrap
                 >
                     {data.git.branch}
                 </Typography>
@@ -71,6 +72,7 @@ const ServiceInfoBox = ({
                         color="inherit"
                         variant="body2"
                         component="span"
+                        noWrap
                         >
                             {data.git.commit.id}
                         </Typography>

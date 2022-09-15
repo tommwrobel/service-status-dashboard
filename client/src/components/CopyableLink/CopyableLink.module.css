@@ -1,0 +1,10 @@
+.copyableLinkContainer {
+    display: flex;
+    max-width: 150px;
+    align-items: center;
+}
+.copyableLinkText {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

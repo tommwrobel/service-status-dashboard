@@ -1,5 +1,6 @@
-import { Link } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import CopyContentButton from "../CopyContentButton/CopyContentButton";
+import classes from "./CopyableLink.module.css";
 
 type CopyableLinkProps = {
     href: string;
@@ -8,10 +9,12 @@ type CopyableLinkProps = {
 const CopyableLink = ({ href }: CopyableLinkProps): JSX.Element => {
     return (
         <>
-            <CopyContentButton content={href} />
-            <Link href={href} target="_blank" rel="noopener">
-                {href.substring(0, 28)}...
-            </Link>
+            <Box className={classes.copyableLinkContainer}>
+                <CopyContentButton content={href} />
+                <Link href={href} target="_blank" rel="noopener" className={classes.copyableLinkText}>
+                    <span>{href}</span>
+                </Link>
+            </Box>
         </>
     );
 };

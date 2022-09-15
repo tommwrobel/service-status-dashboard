@@ -8,6 +8,7 @@ import { RefreshRounded } from "@mui/icons-material";
 import RefreshDataBar from "../RefreshDataBar/RefreshDataBar";
 import useServicesData from "../../hooks/useServicesData/useServicesData";
 import { useQueryClient } from "@tanstack/react-query";
+import CopyableLinkButton from "../CopyableLinkButton/CopyableLinkButton";
 
 type ServicesTableProps = {
     env: Environment;
@@ -56,19 +57,19 @@ const ServicesTable = ({ env }: ServicesTableProps): JSX.Element => {
                     key: "repositoryUrl",
                     displayName: "Repository",
                     isHideable: true,
-                    valueProcessor: (href: string) => <CopyableLink href={href} />
+                    valueProcessor: (href: string) => <CopyableLinkButton href={href} label="Repository" />
                 },
                 {
                     key: "swaggerUrl",
                     displayName: "Swagger",
                     isHideable: true,
-                    valueProcessor: (href: string) => <CopyableLink href={href} />
+                    valueProcessor: (href: string) => <CopyableLinkButton href={href} label="Swagger" />
                 },
                 {
                     key: "jenkinsUrl",
                     displayName: "Jenkins",
                     isHideable: true,
-                    valueProcessor: (href: string) => <CopyableLink href={href} />
+                    valueProcessor: (href: string) => <CopyableLinkButton href={href} label="Jenkins" />
                 },
                 {
                     key: "refreshServiceData",

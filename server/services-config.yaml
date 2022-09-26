@@ -32,7 +32,7 @@ services:
     branch: master
     repository: https://bitbucket.org/symmetricalai/revenue-aggregator
   file-importer:
-    branch: develop
+    branch: dev
     repository: https://bitbucket.org/symmetricalai/file-importer
   employee-onboarding:
     branch: dev

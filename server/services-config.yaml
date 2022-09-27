@@ -9,17 +9,20 @@ servicePaths:
 envs:
   qa-payroll-01:
     file-importer: https://file-importer.qa-payroll-01.dev.v2.symmetrical.ai
+    payroll-fee-manager: https://payroll-fee-manager.qa-payroll-01.dev.v2.symmetrical.ai
     revenue-aggregator: https://revenue-aggregator.qa-payroll-01.dev.v2.symmetrical.ai
     employee-onboarding: https://employee-onboarding.qa-payroll-01.dev.v2.symmetrical.ai
     employee-management: https://employee-management.qa-payroll-01.dev.v2.symmetrical.ai
     employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-payroll-01.dev.v2.symmetrical.ai
   qa-payroll-02:
     revenue-aggregator: https://revenue-aggregator.qa-payroll-02.dev.v2.symmetrical.ai
+    payroll-fee-manager: https://payroll-fee-manager.qa-payroll-02.dev.v2.symmetrical.ai
     file-importer: https://file-importer.qa-payroll-02.dev.v2.symmetrical.ai
     employee-onboarding: https://employee-onboarding.qa-payroll-02.dev.v2.symmetrical.ai
     employee-management: https://employee-management.qa-payroll-02.dev.v2.symmetrical.ai
     employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-payroll-02.dev.v2.symmetrical.ai
   qa-integration-01:
+    payroll-fee-manager: https://payroll-fee-manager.qa-integration-01.dev.v2.symmetrical.ai
     file-importer: https://file-importer.qa-integration-01.dev.v2.symmetrical.ai
     revenue-aggregator: https://revenue-aggregator.qa-integration-01.dev.v2.symmetrical.ai
     employee-onboarding: https://employee-onboarding.qa-integration-01.dev.v2.symmetrical.ai

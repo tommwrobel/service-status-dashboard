@@ -31,6 +31,9 @@ envs:
 
 
 services:
+  payroll-fee-manager:
+    branch: master
+    repository: https://bitbucket.org/symmetricalai/payroll-fees-manager
   revenue-aggregator:
     branch: master
     repository: https://bitbucket.org/symmetricalai/revenue-aggregator

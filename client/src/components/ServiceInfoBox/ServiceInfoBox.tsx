@@ -50,7 +50,7 @@ const ServiceInfoBox = ({
 
     return (
         <>
-            <Box className={`${classes.infoChip} ${getBranchTypeClass(getBranchType(data.git.branch))}`}>
+            <Box className={`${classes.infoChip} ${getBranchTypeClass(getBranchType(data?.git?.branch || ''))}`}>
                 <IconButton
                     size="small"
                     onClick={handlePopoverOpen}
@@ -63,9 +63,9 @@ const ServiceInfoBox = ({
                     component="span"
                     noWrap
                 >
-                    {data.git.branch}
+                    {data?.git?.branch}
                 </Typography>
-                {getBranchType(data.git.branch) !== 'release' &&
+                {getBranchType(data?.git?.branch || '') !== 'release' &&
                     <>
                         <CommitRounded fontSize="small" className={classes.commitIcon} />
                         <Typography
@@ -74,7 +74,7 @@ const ServiceInfoBox = ({
                         component="span"
                         noWrap
                         >
-                            {data.git.commit.id}
+                            {data?.git?.commit?.id}
                         </Typography>
                     </>
                 }

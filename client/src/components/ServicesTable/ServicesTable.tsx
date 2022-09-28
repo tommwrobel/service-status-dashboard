@@ -51,7 +51,7 @@ const ServicesTable = ({ env }: ServicesTableProps): JSX.Element => {
                         />
                     ),
                     valueComparator: (a: ServiceInfo, b: ServiceInfo) =>
-                        a?.git.branch.localeCompare(b?.git.branch),
+                        a?.git?.branch.localeCompare(b?.git?.branch),
                 },
                 {
                     key: "repositoryUrl",

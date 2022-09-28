@@ -17,9 +17,9 @@ const ServiceInfoPopover = ({
     const open = Boolean(anchorEl);
 
     const parseGitInfo = (gitInfo: GitInfo): Record<string, string | number> => ({
-            "branch": gitInfo.branch,
-            "commit id": gitInfo.commit.id,
-            "commit date": gitInfo.commit.time,
+            "branch": gitInfo?.branch,
+            "commit id": gitInfo?.commit.id,
+            "commit date": gitInfo?.commit.time,
     });
 
     return (

@@ -1,4 +1,3 @@
-jenkinsUrl: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/
 envConfigUrl: https://bitbucket.org/symmetricalai/environments/src/main/qa/
 
 servicePaths:
@@ -11,21 +10,21 @@ envs:
     file-importer: https://file-importer.qa-payroll-01.dev.v2.symmetrical.ai
     payroll-fee-manager: https://payroll-fee-manager.qa-payroll-01.dev.v2.symmetrical.ai
     revenue-aggregator: https://revenue-aggregator.qa-payroll-01.dev.v2.symmetrical.ai
-    employee-onboarding: https://employee-onboarding.qa-payroll-01.dev.v2.symmetrical.ai
+    hire-service: https://employee-onboarding.qa-payroll-01.dev.v2.symmetrical.ai
     employee-management: https://employee-management.qa-payroll-01.dev.v2.symmetrical.ai
     employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-payroll-01.dev.v2.symmetrical.ai
   qa-payroll-02:
     revenue-aggregator: https://revenue-aggregator.qa-payroll-02.dev.v2.symmetrical.ai
     payroll-fee-manager: https://payroll-fee-manager.qa-payroll-02.dev.v2.symmetrical.ai
     file-importer: https://file-importer.qa-payroll-02.dev.v2.symmetrical.ai
-    employee-onboarding: https://employee-onboarding.qa-payroll-02.dev.v2.symmetrical.ai
+    hire-service: https://employee-onboarding.qa-payroll-02.dev.v2.symmetrical.ai
     employee-management: https://employee-management.qa-payroll-02.dev.v2.symmetrical.ai
     employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-payroll-02.dev.v2.symmetrical.ai
   qa-integration-01:
     payroll-fee-manager: https://payroll-fee-manager.qa-integration-01.dev.v2.symmetrical.ai
     file-importer: https://file-importer.qa-integration-01.dev.v2.symmetrical.ai
     revenue-aggregator: https://revenue-aggregator.qa-integration-01.dev.v2.symmetrical.ai
-    employee-onboarding: https://employee-onboarding.qa-integration-01.dev.v2.symmetrical.ai
+    hire-service: https://employee-onboarding.qa-integration-01.dev.v2.symmetrical.ai
     employee-management: https://employee-management.qa-integration-01.dev.v2.symmetrical.ai
     employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-integration-01.dev.v2.symmetrical.ai
 
@@ -34,18 +33,24 @@ services:
   payroll-fee-manager:
     branch: master
     repository: https://bitbucket.org/symmetricalai/payroll-fees-manager
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/payroll-fee-manager
   revenue-aggregator:
     branch: master
     repository: https://bitbucket.org/symmetricalai/revenue-aggregator
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/revenue-aggregator
   file-importer:
     branch: dev
     repository: https://bitbucket.org/symmetricalai/file-importer
-  employee-onboarding:
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/file-importer
+  hire-service:
     branch: dev
-    repository: https://bitbucket.org/symmetricalai/employee-onboarding
+    repository: https://bitbucket.org/symmetricalai/hire-service
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/hire/job/hire-service
   employee-management:
     branch: develop
     repository: https://bitbucket.org/symmetricalai/employee-management
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/employee-management
   employee-web-gateway-proxy:
     branch: master
     repository: https://bitbucket.org/symmetricalai/employee-web-gateway-proxy
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/employee-web-gateway-proxy

@@ -8,6 +8,7 @@ servicePaths:
 envs:
   qa-payroll-01:
     file-importer: https://file-importer.qa-payroll-01.dev.v2.symmetrical.ai
+    shared-email-sender: https://shared-email-sender.qa-payroll-01.dev.v2.symmetrical.ai
     payroll-fee-manager: https://payroll-fee-manager.qa-payroll-01.dev.v2.symmetrical.ai
     revenue-aggregator: https://revenue-aggregator.qa-payroll-01.dev.v2.symmetrical.ai
     hire-service: https://employee-onboarding.qa-payroll-01.dev.v2.symmetrical.ai
@@ -15,6 +16,7 @@ envs:
     employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-payroll-01.dev.v2.symmetrical.ai
   qa-payroll-02:
     revenue-aggregator: https://revenue-aggregator.qa-payroll-02.dev.v2.symmetrical.ai
+    shared-email-sender: https://shared-email-sender.qa-payroll-02.dev.v2.symmetrical.ai
     payroll-fee-manager: https://payroll-fee-manager.qa-payroll-02.dev.v2.symmetrical.ai
     file-importer: https://file-importer.qa-payroll-02.dev.v2.symmetrical.ai
     hire-service: https://employee-onboarding.qa-payroll-02.dev.v2.symmetrical.ai
@@ -22,6 +24,7 @@ envs:
     employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-payroll-02.dev.v2.symmetrical.ai
   qa-integration-01:
     payroll-fee-manager: https://payroll-fee-manager.qa-integration-01.dev.v2.symmetrical.ai
+    shared-email-sender: https://shared-email-sender.qa-payroll-02.dev.v2.symmetrical.ai
     file-importer: https://file-importer.qa-integration-01.dev.v2.symmetrical.ai
     revenue-aggregator: https://revenue-aggregator.qa-integration-01.dev.v2.symmetrical.ai
     hire-service: https://employee-onboarding.qa-integration-01.dev.v2.symmetrical.ai
@@ -54,3 +57,7 @@ services:
     branch: master
     repository: https://bitbucket.org/symmetricalai/employee-web-gateway-proxy
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/employee-web-gateway-proxy
+  shared-email-sender:
+    branch: dev
+    repository: https://bitbucket.org/symmetricalai/shared-email-sender
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-email-sender

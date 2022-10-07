@@ -30,6 +30,14 @@ envs:
     hire-service: https://employee-onboarding.qa-integration-01.dev.v2.symmetrical.ai
     employee-management: https://employee-management.qa-integration-01.dev.v2.symmetrical.ai
     employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-integration-01.dev.v2.symmetrical.ai
+  qa-hire-01:
+    payroll-fee-manager: https://payroll-fee-manager.qa-hire-01.dev.v2.symmetrical.ai
+    shared-email-sender: https://shared-email-sender.qa-payroll-02.dev.v2.symmetrical.ai
+    file-importer: https://file-importer.qa-hire-01.dev.v2.symmetrical.ai
+    revenue-aggregator: https://revenue-aggregator.qa-hire-01.dev.v2.symmetrical.ai
+    hire-service: https://employee-onboarding.qa-hire-01.dev.v2.symmetrical.ai
+    employee-management: https://employee-management.qa-hire-01.dev.v2.symmetrical.ai
+    employee-web-gateway-proxy: https://employee-web-gateway-proxy.qa-hire-01.dev.v2.symmetrical.ai    
 
 
 services:

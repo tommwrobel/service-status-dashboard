@@ -54,6 +54,12 @@ const ServicesTable = ({ env }: ServicesTableProps): JSX.Element => {
                         a?.git?.branch.localeCompare(b?.git?.branch),
                 },
                 {
+                    key: "logs",
+                    displayName: "Logs",
+                    isHideable: true,
+                    valueProcessor: (href: string) => <CopyableLinkButton href={href} label="Logs" />
+                },
+                {
                     key: "repositoryUrl",
                     displayName: "Repository",
                     isHideable: true,

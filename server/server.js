@@ -36,7 +36,7 @@ app.get('/api/envs-config', (req, res) => {
     if (envsConfig) {
         return envsConfig;
     } else {
-        const configYaml = yaml.load(fs.readFileSync(__dirname + '/services-config.yaml', 'utf8'));
+        const configYaml = yaml.load(fs.readFileSync(__dirname + '/../services-config.yaml', 'utf8'));
         const parsedConfig = parseEnvsConfig(configYaml)
         res.json(parsedConfig)
     }

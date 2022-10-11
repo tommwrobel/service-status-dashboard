@@ -41,11 +41,9 @@ const RefreshDataBar = () => {
                     startIcon={<RefreshRounded />}
                     loadingPosition="start"
                 >
-                    Refresh Data
+                    Refresh All
                 </LoadingButton>
             </Tooltip>
-
-            <FormControlLabel control={<Switch onChange={handleAutoRefreshChange} />} label="Refresh every 30s" />
         </Box>
     );
 }

@@ -1,0 +1,51 @@
+envConfigUrl: https://bitbucket.org/symmetricalai/environments/src/main/qa/
+envAppLogsUrl: https://grafana.dev.v2.symmetrical.ai/explore?orgId=1&left={"datasource":"Loki","queries":[{"refId":"A","expr":"{app=\"{{APP}}\",namespace=\"{{ENV}}\"}","queryType":"range"}],"range":{"from":"now-1h","to":"now"}}
+
+servicePaths:
+  health: /meta/health
+  info: /meta/info
+  swagger: /swagger-ui/index.html#
+
+envs:
+  - qa-payroll-01
+  - qa-payroll-02
+  - qa-integration-01
+  - qa-hire-01
+  - qa-people-01
+
+services:
+  payroll-fee-manager:
+    url: https://payroll-fee-manager.{{ENV}}.dev.v2.symmetrical.ai
+    branch: master
+    repository: https://bitbucket.org/symmetricalai/payroll-fees-manager
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/payroll-fee-manager
+  revenue-aggregator:
+    url: https://revenue-aggregator.{{ENV}}.dev.v2.symmetrical.ai
+    branch: master
+    repository: https://bitbucket.org/symmetricalai/revenue-aggregator
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/revenue-aggregator
+  shared-file-importer:
+    url: https://shared-file-importer.{{ENV}}.dev.v2.symmetrical.ai
+    branch: dev
+    repository: https://bitbucket.org/symmetricalai/file-importer
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/file-importer
+  hire-service:
+    url: https://employee-onboarding.{{ENV}}.dev.v2.symmetrical.ai
+    branch: dev
+    repository: https://bitbucket.org/symmetricalai/hire-service
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/hire/job/hire-service
+  employee-management:
+    url: https://employee-management.{{ENV}}.dev.v2.symmetrical.ai
+    branch: develop
+    repository: https://bitbucket.org/symmetricalai/employee-management
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/employee-management
+  employee-web-gateway-proxy:
+    url: https://employee-web-gateway-proxy.{{ENV}}.dev.v2.symmetrical.ai
+    branch: master
+    repository: https://bitbucket.org/symmetricalai/employee-web-gateway-proxy
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/employee-web-gateway-proxy
+  shared-email-sender:
+    url: https://shared-email-sender.{{ENV}}.dev.v2.symmetrical.ai
+    branch: dev
+    repository: https://bitbucket.org/symmetricalai/shared-email-sender
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-email-sender

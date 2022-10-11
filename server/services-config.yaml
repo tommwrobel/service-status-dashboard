@@ -19,6 +19,11 @@ services:
     branch: master
     repository: https://bitbucket.org/symmetricalai/payroll-fees-manager
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/payroll-fee-manager
+  payroll-employee-groups:
+    url: https://payroll-employee-groups.{{ENV}}.dev.v2.symmetrical.ai
+    branch: master
+    repository: https://bitbucket.org/symmetricalai/payroll-go
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/payroll-go
   revenue-aggregator:
     url: https://revenue-aggregator.{{ENV}}.dev.v2.symmetrical.ai
     branch: master

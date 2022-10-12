@@ -32,8 +32,8 @@ services:
   shared-file-importer:
     url: https://shared-file-importer.{{ENV}}.dev.v2.symmetrical.ai
     branch: dev
-    repository: https://bitbucket.org/symmetricalai/file-importer
-    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/file-importer
+    repository: https://bitbucket.org/symmetricalai/shared-file-importer
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-file-importer
   hire-service:
     url: https://employee-onboarding.{{ENV}}.dev.v2.symmetrical.ai
     branch: dev

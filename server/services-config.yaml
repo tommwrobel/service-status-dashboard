@@ -54,3 +54,13 @@ services:
     branch: dev
     repository: https://bitbucket.org/symmetricalai/shared-email-sender
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-email-sender
+  shared-template-manager:
+    url: https://shared-template-manager.{{ENV}}.dev.v2.symmetrical.ai
+    branch: dev
+    repository: https://bitbucket.org/symmetricalai/shared-template-manager
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-template-manager
+  payslip-generator:
+    url: https://payslip-generator.{{ENV}}.dev.v2.symmetrical.ai
+    branch: dev
+    repository: https://bitbucket.org/symmetricalai/payslip-generator
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/payslip-generator

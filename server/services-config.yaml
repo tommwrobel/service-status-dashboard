@@ -59,8 +59,8 @@ services:
     branch: dev
     repository: https://bitbucket.org/symmetricalai/shared-template-manager
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-template-manager
-  payslip-generator:
-    url: https://payslip-generator.{{ENV}}.dev.v2.symmetrical.ai
+  shared-document-generator:
+    url: https://shared-document-generator.{{ENV}}.dev.v2.symmetrical.ai
     branch: dev
-    repository: https://bitbucket.org/symmetricalai/payslip-generator
-    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/payslip-generator
+    repository: https://bitbucket.org/symmetricalai/shared-document-generator
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-document-generator    

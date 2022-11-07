@@ -49,6 +49,11 @@ services:
     branch: master
     repository: https://bitbucket.org/symmetricalai/employee-web-gateway-proxy
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/employee-web-gateway-proxy
+  documents:
+    url: https://documents.{{ENV}}.dev.v2.symmetrical.ai/
+    branch: dev
+    repository: https://bitbucket.org/symmetricalai/documents
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/documents    
   shared-email-sender:
     url: https://shared-email-sender.{{ENV}}.dev.v2.symmetrical.ai
     branch: dev

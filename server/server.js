@@ -36,7 +36,7 @@ app.get('/api/envs-config', (req, res) => {
     if (envsConfig) {
         return envsConfig;
     } else {
-        const configYaml = yaml.load(fs.readFileSync(__dirname + '/services-config.yaml', 'utf8'));
+        const configYaml = loadConfig()
         const parsedConfig = parseEnvsConfig(configYaml)
         res.json(parsedConfig)
     }
@@ -53,5 +53,12 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
 
+function loadConfig(){
+    try {
+        return yaml.load(fs.readFileSync(__dirname + '/services-config.yaml', 'utf8'));
+    } catch (e) {
+        return yaml.load(fs.readFileSync(__dirname + '/../services-config.yaml', 'utf8'));
+    }
+}
 
 

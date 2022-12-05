@@ -16,56 +16,58 @@ envs:
 services:
   payroll-fee-manager:
     url: https://payroll-fee-manager.{{ENV}}.dev.v2.symmetrical.ai
-    branch: master
+    developmentBranch: master
     repository: https://bitbucket.org/symmetricalai/payroll-fees-manager
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/payroll-fee-manager
   payroll-employee-groups:
     url: https://payroll-employee-groups.{{ENV}}.dev.v2.symmetrical.ai
-    branch: master
+    developmentBranch: master
     repository: https://bitbucket.org/symmetricalai/payroll-go
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/payroll-go
   revenue-aggregator:
     url: https://revenue-aggregator.{{ENV}}.dev.v2.symmetrical.ai
-    branch: master
+    developmentBranch: master
     repository: https://bitbucket.org/symmetricalai/revenue-aggregator
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/revenue-aggregator
+    health: https://revenue-aggregator.{{ENV}}.dev.v2.symmetrical.ai:8080/meta/health
+    info: https://revenue-aggregator.{{ENV}}.dev.v2.symmetrical.ai:8080/meta/info
   shared-file-importer:
     url: https://shared-file-importer.{{ENV}}.dev.v2.symmetrical.ai
-    branch: dev
+    developmentBranch: dev
     repository: https://bitbucket.org/symmetricalai/shared-file-importer
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-file-importer
   hire-service:
     url: https://employee-onboarding.{{ENV}}.dev.v2.symmetrical.ai
-    branch: dev
+    developmentBranch: dev
     repository: https://bitbucket.org/symmetricalai/hire-service
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/hire/job/hire-service
   employee-management:
     url: https://employee-management.{{ENV}}.dev.v2.symmetrical.ai
-    branch: develop
+    developmentBranch: develop
     repository: https://bitbucket.org/symmetricalai/employee-management
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/employee-management
   employee-web-gateway-proxy:
     url: https://employee-web-gateway-proxy.{{ENV}}.dev.v2.symmetrical.ai
-    branch: master
+    developmentBranch: master
     repository: https://bitbucket.org/symmetricalai/employee-web-gateway-proxy
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/employee-web-gateway-proxy
   documents:
     url: https://documents.{{ENV}}.dev.v2.symmetrical.ai
-    branch: dev
+    developmentBranch: dev
     repository: https://bitbucket.org/symmetricalai/documents
-    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/documents    
+    jenkins: https://jenkins.tools.v2.symmetrical.ai/job/applications/job/documents
   shared-email-sender:
     url: https://shared-email-sender.{{ENV}}.dev.v2.symmetrical.ai
-    branch: dev
+    developmentBranch: dev
     repository: https://bitbucket.org/symmetricalai/shared-email-sender
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-email-sender
   shared-template-manager:
     url: https://shared-template-manager.{{ENV}}.dev.v2.symmetrical.ai
-    branch: dev
+    developmentBranch: dev
     repository: https://bitbucket.org/symmetricalai/shared-template-manager
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-template-manager
   shared-document-generator:
     url: https://shared-document-generator.{{ENV}}.dev.v2.symmetrical.ai
-    branch: dev
+    developmentBranch: dev
     repository: https://bitbucket.org/symmetricalai/shared-document-generator
     jenkins: https://jenkins.tools.v2.symmetrical.ai/job/shared/job/shared-document-generator    
